@@ -19,9 +19,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Aliases
-alias vim="nvim"
-alias zshrc="vim ~/.zshrc"
-alias vimrc="vim ~/.vimrc"
+# TODO
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

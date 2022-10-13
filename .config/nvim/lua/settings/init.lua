@@ -1,0 +1,6 @@
+require("settings.feline")
+require("settings.null-ls")
+require("settings.telescope")
+require("settings.toggle-term")
+require("settings.nvim-tree")
+require("settings.lsp")
