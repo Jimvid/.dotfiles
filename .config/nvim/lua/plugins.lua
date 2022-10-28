@@ -50,7 +50,6 @@ return packer.startup(function(use)
 		end,
 		requires = { "nvim-lua/plenary.nvim" },
 	})
-	-- autocomplete testing
 	use("hrsh7th/vim-vsnip")
 	use("L3MON4D3/LuaSnip")
 	use("hrsh7th/cmp-nvim-lsp")
@@ -58,6 +57,14 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
+	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "kyazdani42/nvim-web-devicons" })
+	use("simrat39/rust-tools.nvim")
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end

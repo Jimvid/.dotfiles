@@ -19,6 +19,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Aliases
+alias vim="nvim"
 # TODO
 
 export NVM_DIR="$HOME/.nvm"
