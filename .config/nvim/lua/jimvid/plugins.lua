@@ -35,36 +35,19 @@ return packer.startup(function(use)
 	use("neovim/nvim-lspconfig")
 	use("nvim-lua/plenary.nvim")
 	use("nvim-lua/telescope.nvim")
-	use({
-		"akinsho/toggleterm.nvim",
-		tag = "*",
-		config = function()
-			require("toggleterm").setup()
-		end,
-	})
-	use({ "feline-nvim/feline.nvim", branch = "0.5-compat" })
-	use({
-		"jose-elias-alvarez/null-ls.nvim",
-		config = function()
-			require("null-ls").setup()
-		end,
-		requires = { "nvim-lua/plenary.nvim" },
-	})
+	use({ "akinsho/toggleterm.nvim", tag = "*", config = function() require("toggleterm").setup() end })
+	use({"jose-elias-alvarez/null-ls.nvim", config = function() require("null-ls").setup() end, requires = { "nvim-lua/plenary.nvim" }})
 	use("hrsh7th/vim-vsnip")
-	use("L3MON4D3/LuaSnip")
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
-	use({
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({})
-		end,
-	})
+	use({"windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup({}) end })
 	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "kyazdani42/nvim-web-devicons" })
 	use("simrat39/rust-tools.nvim")
+  use {'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
+
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end
