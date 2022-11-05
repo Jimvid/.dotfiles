@@ -1,3 +1,1 @@
-require("telescope").setup({
-	file_ignore_patterns = { "node%_modules/.*" },
-})
+require('telescope').setup{  defaults = { file_ignore_patterns = { "node_modules" }} }

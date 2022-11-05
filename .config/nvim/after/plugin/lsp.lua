@@ -100,4 +100,4 @@ require("lspconfig").html.setup(config())
 
 require("lspconfig").sumneko_lua.setup(config())
 
--- require("lspconfig").rust_analyzer.setup(config())
+require("lspconfig").astro.setup(config())
