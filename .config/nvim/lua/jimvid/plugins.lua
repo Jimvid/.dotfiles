@@ -47,6 +47,8 @@ return packer.startup(function(use)
 	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "kyazdani42/nvim-web-devicons" })
 	use("simrat39/rust-tools.nvim")
   use {'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
+  use('glepnir/lspsaga.nvim')
+  use {'lewis6991/gitsigns.nvim', config = function() require('gitsigns').setup() end}
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
