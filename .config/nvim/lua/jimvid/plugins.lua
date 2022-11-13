@@ -29,26 +29,35 @@ return packer.startup(function(use)
 	use("folke/tokyonight.nvim")
 	use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
 	use({ "prettier/vim-prettier", run = "yarn install" })
-	use({"nvim-treesitter/nvim-treesitter", run = ':TSUpdate'})
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
 	use("neovim/nvim-lspconfig")
 	use("nvim-lua/plenary.nvim")
 	use("nvim-lua/telescope.nvim")
-	use({ "akinsho/toggleterm.nvim", tag = "*", config = function() require("toggleterm").setup() end })
-	use({"jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" }})
+	use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use("hrsh7th/vim-vsnip")
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
-	use({"windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup({}) end })
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
 	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "kyazdani42/nvim-web-devicons" })
 	use("simrat39/rust-tools.nvim")
-  use {'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
-  use('glepnir/lspsaga.nvim')
-  use {'lewis6991/gitsigns.nvim', config = function() require('gitsigns').setup() end}
+	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
+	use("glepnir/lspsaga.nvim")
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()

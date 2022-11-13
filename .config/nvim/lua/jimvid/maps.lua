@@ -10,18 +10,18 @@ map("n", "<leader>q", ":q<cr>", { noremap = true })
 map("n", "<leader>cq", ":cq<cr>", { noremap = true })
 
 -- New tab
-map('n', 'te', ':tabedit')
+map("n", "te", ":tabedit")
 
 -- Split window
-map('n', 'ss', ':split<Return><C-w>w')
-map('n', 'sv', ':vsplit<Return><C-w>w')
+map("n", "ss", ":split<Return><C-w>w")
+map("n", "sv", ":vsplit<Return><C-w>w")
 
 -- Move window
-map('n', '<Space>', '<C-w>w')
-map('', 'sh', '<C-w>h')
-map('', 'sk', '<C-w>k')
-map('', 'sj', '<C-w>j')
-map('', 'sl', '<C-w>l')
+map("n", "<Space>", "<C-w>w")
+map("", "sh", "<C-w>h")
+map("", "sk", "<C-w>k")
+map("", "sj", "<C-w>j")
+map("", "sl", "<C-w>l")
 
 -- Telescope
 map("n", "<leader>ff", ":Telescope find_files<cr>", { noremap = true })
