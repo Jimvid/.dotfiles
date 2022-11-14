@@ -5,7 +5,7 @@ local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
 	PACKER_BOOTSTRAP =
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+	fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
 	print("Installing packer close and reopen Neovim...")
 end
 
@@ -49,7 +49,7 @@ return packer.startup(function(use)
 			require("nvim-autopairs").setup({})
 		end,
 	})
-	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "kyazdani42/nvim-web-devicons" })
+	use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
 	use("simrat39/rust-tools.nvim")
 	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
 	use("glepnir/lspsaga.nvim")
