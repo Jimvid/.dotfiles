@@ -1,4 +1,8 @@
-local null_ls = require("null-ls")
+local status, null_ls = pcall(require, "null-ls")
+
+if not status then
+	return
+end
 
 -- format on save
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
