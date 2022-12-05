@@ -1,47 +1,46 @@
 vim.g.mapleader = " "
 vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true })
 
-local map = require("jimvid.utils").map
-
 -- General
-map("n", "<leader>w", ":w<cr>", { noremap = true })
-map("n", "<leader>wq", ":wq<cr>", { noremap = true })
-map("n", "<leader>q", ":q<cr>", { noremap = true })
-map("n", "<leader>cq", ":cq<cr>", { noremap = true })
-map("n", "<C-u>", "<C-u>zz", { noremap = true })
-map("n", "<C-d>", "<C-d>zz", { noremap = true })
-map("n", "n", "nzzzv", { noremap = true })
-map("n", "N", "Nzzzv", { noremap = true })
+
+vim.keymap.set("n", "<leader>w", ":w<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>wq", ":wq<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>q", ":q<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>cq", ":cq<cr>", { noremap = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
+vim.keymap.set("n", "n", "nzzzv", { noremap = true })
+vim.keymap.set("n", "N", "Nzzzv", { noremap = true })
 
 -- New tab
-map("n", "te", ":tabedit")
+vim.keymap.set("n", "te", ":tabedit")
 
 -- Split window
-map("n", "ss", ":split<Return><C-w>w")
-map("n", "sv", ":vsplit<Return><C-w>w")
+vim.keymap.set("n", "ss", ":split<Return><C-w>w")
+vim.keymap.set("n", "sv", ":vsplit<Return><C-w>w")
 
 -- Move window
-map("", "sh", "<C-w>h")
-map("", "sk", "<C-w>k")
-map("", "sj", "<C-w>j")
-map("", "sl", "<C-w>l")
+vim.keymap.set("", "sh", "<C-w>h")
+vim.keymap.set("", "sk", "<C-w>k")
+vim.keymap.set("", "sj", "<C-w>j")
+vim.keymap.set("", "sl", "<C-w>l")
 
 -- Telescope
-map("n", "<leader>ff", ":Telescope find_files<cr>", { noremap = true })
-map("n", "<leader>fb", ":Telescope buffers<cr>", { noremap = true })
-map("n", "<leader>fg", ":Telescope live_grep<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<cr>", { noremap = true })
 
 -- ToggleTerm
-map("n", "<leader>tt", ":ToggleTerm<cr>", { noremap = true })
-map("n", "<leader>Tt", ":ToggleTerm dir=~<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>tt", ":ToggleTerm<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>Tt", ":ToggleTerm dir=~<cr>", { noremap = true })
 
 -- Packer
-map("n", "<leader>pc", ":PackerCompile<cr>")
-map("n", "<leader>pi", ":PackerInstall<cr>")
-map("n", "<leader>ps", ":PackerSync<cr>")
-map("n", "<leader>pS", ":PackerStatus<cr>")
-map("n", "<leader>pu", ":PackerUpdate<cr>")
+vim.keymap.set("n", "<leader>pc", ":PackerCompile<cr>")
+vim.keymap.set("n", "<leader>pi", ":PackerInstall<cr>")
+vim.keymap.set("n", "<leader>ps", ":PackerSync<cr>")
+vim.keymap.set("n", "<leader>pS", ":PackerStatus<cr>")
+vim.keymap.set("n", "<leader>pu", ":PackerUpdate<cr>")
 
 -- Nvim-tree
-map("n", "<leader>e", ":NvimTreeToggle<cr>")
-map("n", "<leader>fe", ":NvimTreeToggle<cr>")
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<cr>")
+vim.keymap.set("n", "<leader>fe", ":NvimTreeToggle<cr>")
