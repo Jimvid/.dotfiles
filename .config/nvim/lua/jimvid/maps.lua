@@ -8,6 +8,10 @@ map("n", "<leader>w", ":w<cr>", { noremap = true })
 map("n", "<leader>wq", ":wq<cr>", { noremap = true })
 map("n", "<leader>q", ":q<cr>", { noremap = true })
 map("n", "<leader>cq", ":cq<cr>", { noremap = true })
+map("n", "<C-u>", "<C-u>zz", { noremap = true })
+map("n", "<C-d>", "<C-d>zz", { noremap = true })
+map("n", "n", "nzzzv", { noremap = true })
+map("n", "N", "Nzzzv", { noremap = true })
 
 -- New tab
 map("n", "te", ":tabedit")
@@ -17,7 +21,6 @@ map("n", "ss", ":split<Return><C-w>w")
 map("n", "sv", ":vsplit<Return><C-w>w")
 
 -- Move window
-map("n", "<Space>", "<C-w>w")
 map("", "sh", "<C-w>h")
 map("", "sk", "<C-w>k")
 map("", "sj", "<C-w>j")
