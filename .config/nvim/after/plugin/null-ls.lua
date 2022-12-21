@@ -32,7 +32,10 @@ null_ls.setup({
 	end,
 	sources = {
 		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.formatting.prettierd,
+		null_ls.builtins.formatting.prettier.with({
+			extra_filetypes = { "svelte" },
+			only_local = "node_modules/.bin",
+		}),
 		null_ls.builtins.formatting.rustfmt,
 		null_ls.builtins.diagnostics.eslint_d.with({
 			only_local = "node_modules/.bin",
