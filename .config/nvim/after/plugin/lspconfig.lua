@@ -1,5 +1,5 @@
 local status, nvim_lsp = pcall(require, "lspconfig")
-
+-- replace all LSP config with https://github.com/VonHeikemen/lsp-zero.nvim
 if not status then
 	return
 end
