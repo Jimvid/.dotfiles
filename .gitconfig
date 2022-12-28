@@ -2,3 +2,5 @@
 	name = Jimvid
 	mail = victor@jimvid.com
 	email = victor@jimvid
+[init]
+	defaultBranch = main

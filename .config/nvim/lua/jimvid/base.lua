@@ -7,9 +7,9 @@ vim.opt.cursorline = true
 vim.opt.termguicolors = true
 vim.opt.relativenumber = true
 
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.title = true
@@ -27,6 +27,6 @@ vim.opt.wildignore:append({ "*/node_modules/*" })
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
-	pattern = "*",
-	command = "set nopaste",
+    pattern = "*",
+    command = "set nopaste",
 })

@@ -2,11 +2,11 @@ local status, mason = pcall(require, "mason")
 local status2, lspconfig = pcall(require, "mason-lspconfig")
 
 if not status and not status2 then
-	return
+    return
 end
 
 mason.setup({})
 
 lspconfig.setup({
-	automatic_installation = true,
+    automatic_installation = true,
 })
