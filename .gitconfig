@@ -4,3 +4,5 @@
 	email = victor@jimvid
 [init]
 	defaultBranch = main
+[core]
+	excludesfile = /Users/jimvid/.gitignore

@@ -42,12 +42,8 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
-	use({
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({})
-		end,
-	})
+	use("windwp/nvim-autopairs")
+	use("windwp/nvim-ts-autotag")
 	use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
 	use("simrat39/rust-tools.nvim")
 	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
