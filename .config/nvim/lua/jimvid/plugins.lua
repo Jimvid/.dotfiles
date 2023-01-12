@@ -26,7 +26,7 @@ end
 -- Plugins
 return packer.startup(function(use)
 	use("wbthomason/packer.nvim")
-	use("folke/tokyonight.nvim")
+	use({ "catppuccin/nvim", as = "catppuccin" })
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("williamboman/mason.nvim")
