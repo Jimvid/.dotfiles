@@ -12,6 +12,7 @@ telescope.setup({
             preview = true,
             layout_config = { height = 100, width = 1000 },
             hijack_netrw = true,
+            hidden = true,
         },
     },
     defaults = {
