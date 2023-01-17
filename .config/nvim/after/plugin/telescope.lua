@@ -1,26 +1,39 @@
 local status, telescope = pcall(require, "telescope")
-local builtin = require("telescope.builtin")
 
 if not status then
-    return
+	return
 end
 
+local builtin = require("telescope.builtin")
+local fb_actions = telescope.extensions.file_browser.actions
+
+local fb_shared_mappings = {
+	["<C-c>"] = fb_actions.create,
+	["<C-d>"] = fb_actions.remove,
+	["<C-m>"] = fb_actions.move,
+	["<C-r>"] = fb_actions.rename,
+}
+
 telescope.setup({
-    extensions = {
-        file_browser = {
-            layout_strategy = "horizontal",
-            preview = true,
-            layout_config = { height = 100, width = 1000 },
-            hijack_netrw = true,
-            hidden = true,
-        },
-    },
-    defaults = {
-        -- winblend = 10,
-        file_ignore_patterns = { "node_modules" },
-        layout_strategy = "horizontal",
-        layout_config = { height = 0.70, width = 0.70 },
-    },
+	extensions = {
+		file_browser = {
+			layout_strategy = "horizontal",
+			preview = true,
+			layout_config = { height = 100, width = 1000 },
+			hijack_netrw = true,
+			hidden = true,
+			mappings = {
+				["i"] = fb_shared_mappings,
+				["n"] = fb_shared_mappings,
+			},
+		},
+	},
+	defaults = {
+		-- winblend = 10,
+		file_ignore_patterns = { "node_modules" },
+		layout_strategy = "horizontal",
+		layout_config = { height = 0.70, width = 0.70 },
+	},
 })
 
 -- load extentions
@@ -32,11 +45,11 @@ vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", { noremap = true 
 vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>fs", function()
-    builtin.grep_string({ search = vim.fn.input("Grep > ") })
+	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
 vim.keymap.set("n", "<leader>FF", function()
-    builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-        layout_config = { height = 0.70, width = 0.70 },
-        previewer = false,
-    }))
+	builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+		layout_config = { height = 0.70, width = 0.70 },
+		previewer = false,
+	}))
 end)
