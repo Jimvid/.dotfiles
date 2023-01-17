@@ -4,7 +4,9 @@ if not status then
 	return
 end
 
-diffview.setup()
+diffview.setup({
+	use_icons = false,
+})
 
 local opts = { noremap = true, silent = true }
 
