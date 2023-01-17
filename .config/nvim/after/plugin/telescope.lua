@@ -5,14 +5,6 @@ if not status then
 end
 
 local builtin = require("telescope.builtin")
-local fb_actions = telescope.extensions.file_browser.actions
-
-local fb_shared_mappings = {
-	["<C-c>"] = fb_actions.create,
-	["<C-d>"] = fb_actions.remove,
-	["<C-m>"] = fb_actions.move,
-	["<C-r>"] = fb_actions.rename,
-}
 
 telescope.setup({
 	extensions = {
@@ -22,10 +14,6 @@ telescope.setup({
 			layout_config = { height = 100, width = 1000 },
 			hijack_netrw = true,
 			hidden = true,
-			mappings = {
-				["i"] = fb_shared_mappings,
-				["n"] = fb_shared_mappings,
-			},
 		},
 	},
 	defaults = {
