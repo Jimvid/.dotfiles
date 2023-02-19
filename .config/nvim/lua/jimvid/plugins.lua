@@ -66,7 +66,7 @@ return packer.startup(function(use)
 			require("gitsigns").setup()
 		end,
 	})
-
+	use("nvim-tree/nvim-web-devicons")
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end

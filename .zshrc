@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/jimvid/.oh-my-zsh"
 
@@ -11,19 +8,15 @@ ZSH_DISABLE_COMPFIX=true
 # Plugins
 plugins=(
     git
-    npm
-    node
-    brew
-		zsh-autosuggestions
+	zsh-autosuggestions
+    web-search
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # General Aliases
 alias vim="nvim"
-
-# Init fucking
-eval $(thefuck --alias fuck)
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
