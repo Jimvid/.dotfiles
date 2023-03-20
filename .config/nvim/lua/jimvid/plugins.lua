@@ -48,7 +48,12 @@ return packer.startup(function(use)
 			{ "rafamadriz/friendly-snippets" },
 		},
 	})
-
+	use({
+		"nvim-tree/nvim-tree.lua",
+		requires = {
+			"nvim-tree/nvim-web-devicons", -- optional, for file icons
+		},
+	})
 	use({ "catppuccin/nvim", as = "catppuccin" })
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -56,7 +61,6 @@ return packer.startup(function(use)
 	use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use("windwp/nvim-autopairs")
 	use("windwp/nvim-ts-autotag")
-	use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
 	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
 	use("theprimeagen/harpoon")
 	use({ "tpope/vim-fugitive" })

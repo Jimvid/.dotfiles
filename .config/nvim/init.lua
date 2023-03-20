@@ -3,14 +3,17 @@ require("jimvid.plugins")
 require("jimvid.colors")
 require("jimvid.maps")
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 local has = vim.fn.has
 local is_mac = has("macunix")
 local is_win = has("win32")
 
 -- sync vim clipboard with os clipboard
 if is_mac then
-    vim.opt.clipboard:append({ "unnamedplus" })
+	vim.opt.clipboard:append({ "unnamedplus" })
 end
 if is_win then
-    vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
+	vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
 end
