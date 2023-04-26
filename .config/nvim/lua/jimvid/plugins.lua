@@ -48,29 +48,26 @@ return packer.startup(function(use)
 			{ "rafamadriz/friendly-snippets" },
 		},
 	})
-	use({
-		"nvim-tree/nvim-tree.lua",
-		requires = {
-			"nvim-tree/nvim-web-devicons", -- optional, for file icons
-		},
-	})
 	use({ "catppuccin/nvim", as = "catppuccin" })
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
+	use({ "christoomey/vim-tmux-navigator", lazy = false })
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-lua/telescope.nvim")
 	use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
-	use("windwp/nvim-autopairs")
-	use("windwp/nvim-ts-autotag")
 	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
 	use("theprimeagen/harpoon")
 	use({ "tpope/vim-fugitive" })
+	use({ "tpope/vim-surround" })
+	use("nvim-tree/nvim-web-devicons")
 	use({
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require("gitsigns").setup()
 		end,
 	})
-	use("nvim-tree/nvim-web-devicons")
+	use("windwp/nvim-autopairs")
+	use("windwp/nvim-ts-autotag")
+
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end

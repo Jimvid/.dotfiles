@@ -1,5 +1,6 @@
 vim.cmd("autocmd!")
 
+vim.o.winblend = 10
 vim.g.mapleader = " "
 vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true })
 
