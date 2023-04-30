@@ -26,3 +26,8 @@ vim.keymap.set("", "sh", "<C-w>h")
 vim.keymap.set("", "sk", "<C-w>k")
 vim.keymap.set("", "sj", "<C-w>j")
 vim.keymap.set("", "sl", "<C-w>l")
+
+vim.keymap.set("n", "<C-h>", ":TmuxNavigateLeft<CR>", { silent = true })
+vim.keymap.set("n", "<C-j>", ":TmuxNavigateDown<CR>", { silent = true })
+vim.keymap.set("n", "<C-k>", ":TmuxNavigateUp<CR>", { silent = true })
+vim.keymap.set("n", "<C-l>", ":TmuxNavigateRight<CR>", { silent = true })
