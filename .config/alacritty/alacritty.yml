@@ -1,0 +1,36 @@
+draw_bold_text_with_bright_colors: true
+env:
+  TERM: xterm-256color
+font:
+  bold:
+    family: JetBrainsMono Nerd Font
+    style: Bold
+  bold_italic:
+    family: JetBrainsMono Nerd Font
+    style: Bold Italic
+  italic:
+    family: JetBrainsMono Nerd Font
+    style: Italic
+  normal:
+    family: JetBrainsMono Nerd Font
+    style: Regular
+  size: 16
+
+import:
+  - ~/.config/alacritty/catppuccin-mocha.yml
+scrolling:
+  history: 10000
+  multiplier: 3
+
+selection:
+  save_to_clipboard: false
+
+window:
+  class:
+    general: Alacritty
+    instance: Alacritty
+  decorations: none
+  opacity: 1
+  padding:
+    x: 10
+    y: 10
