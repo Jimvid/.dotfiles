@@ -14,7 +14,7 @@ font:
   normal:
     family: JetBrainsMono Nerd Font
     style: Regular
-  size: 16
+  size: 18
 
 import:
   - ~/.config/alacritty/catppuccin-mocha.yml
@@ -29,8 +29,8 @@ window:
   class:
     general: Alacritty
     instance: Alacritty
-  decorations: none
-  opacity: 1
+  decorations: buttonless
+  opacity: 0.90
   padding:
     x: 10
-    y: 10
+    y: 20
