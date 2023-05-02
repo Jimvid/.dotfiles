@@ -25,6 +25,7 @@ end
 
 -- Plugins
 return packer.startup(function(use)
+	use("xiyaowong/transparent.nvim")
 	use("wbthomason/packer.nvim")
 	use("nvim-lua/plenary.nvim")
 	use({
