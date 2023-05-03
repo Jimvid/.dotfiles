@@ -57,7 +57,6 @@ return packer.startup(function(use)
 	use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
 	use("theprimeagen/harpoon")
-	use({ "tpope/vim-fugitive" })
 	use({ "tpope/vim-surround" })
 	use("nvim-tree/nvim-web-devicons")
 	use({

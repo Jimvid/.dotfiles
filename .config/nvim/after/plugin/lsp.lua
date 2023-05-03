@@ -65,7 +65,12 @@ end)
 lsp.setup()
 
 -- Setup null-ls
-local null_ls = require("null-ls")
+local status_null_ls, null_ls = pcall(require, "null-ls")
+
+if not status_null_ls then
+	return
+end
+
 local null_opts = lsp.build_options("null-ls", {})
 
 -- format on save
