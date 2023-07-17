@@ -25,7 +25,6 @@ end
 
 -- Plugins
 return packer.startup(function(use)
-	use("xiyaowong/transparent.nvim")
 	use("wbthomason/packer.nvim")
 	use("nvim-lua/plenary.nvim")
 	use({
@@ -54,8 +53,6 @@ return packer.startup(function(use)
 	use({ "christoomey/vim-tmux-navigator", lazy = false })
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-lua/telescope.nvim")
-	use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
-	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
 	use("theprimeagen/harpoon")
 	use({ "tpope/vim-surround" })
 	use("nvim-tree/nvim-web-devicons")
@@ -65,8 +62,12 @@ return packer.startup(function(use)
 			require("gitsigns").setup()
 		end,
 	})
-	use("windwp/nvim-autopairs")
-	use("windwp/nvim-ts-autotag")
+	use({
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup()
+		end,
+	})
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
