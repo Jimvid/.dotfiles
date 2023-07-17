@@ -30,7 +30,6 @@ window:
     general: Alacritty
     instance: Alacritty
   decorations: buttonless
-  opacity: 0.90
   padding:
     x: 10
     y: 20
