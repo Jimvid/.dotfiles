@@ -1,7 +1,7 @@
 require("jimvid.base")
 require("jimvid.plugins")
 require("jimvid.colors")
-require("jimvid.maps")
+require("jimvid.keymaps")
 
 local has = vim.fn.has
 local is_mac = has("macunix")
