@@ -36,6 +36,3 @@ export FZF_DEFAULT_OPTS='--reverse --preview "cat {}"'
 # find files/dirs and exclude node_modules and .git directories
 alias ff='vim $(rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,.git}" | fzf)'
 alias fd='cd $(find . -type d \( -name node_modules -o -name .git \) -prune -o -name "*" | fzf)'
-
-# Search from 
-alias fdh='cd ~ && cd \$(find * -type d | fzf)'
