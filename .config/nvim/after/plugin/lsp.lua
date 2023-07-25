@@ -17,6 +17,7 @@ lsp.set_sign_icons({
 
 lsp.on_attach(function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
+    lsp.buffer_autoformat()
 
 	vim.keymap.set("n", "gd", function()
 		vim.lsp.buf.definition()
