@@ -49,6 +49,7 @@ return packer.startup(function(use)
         },
     })
     use({ "catppuccin/nvim", as = "catppuccin" })
+    use({ "jose-elias-alvarez/null-ls.nvim" })
     use({ "nvim-telescope/telescope-file-browser.nvim" })
     use({ "christoomey/vim-tmux-navigator", lazy = false })
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
