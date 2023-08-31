@@ -1,7 +1,6 @@
 local fn = vim.fn
 
 -- Bootstrap lazy
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -13,23 +12,28 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 local lazy = require("lazy")
-
 local plugins = {
 	"wbthomason/packer.nvim",
 	"nvim-lua/plenary.nvim",
 	{
 		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
 		dependencies = {
-			{ "neovim/nvim-lspconfig" },
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
-			{ "hrsh7th/nvim-cmp" },
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "L3MON4D3/LuaSnip" },
+			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"hrsh7th/nvim-cmp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"saadparwaiz1/cmp_luasnip",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+			"L3MON4D3/LuaSnip",
+			"rafamadriz/friendly-snippets",
+			{ "lukas-reineke/lsp-format.nvim", config = true },
 		},
 	},
 	{ "catppuccin/nvim", as = "catppuccin" },
@@ -40,24 +44,14 @@ local plugins = {
 	"theprimeagen/harpoon",
 	"tpope/vim-surround",
 	"nvim-tree/nvim-web-devicons",
-	{ "nvim-lualine/lualine.nvim", dependencies = { "nvim-tree/nvim-web-devicons", opt = true } },
+	"stevearc/oil.nvim",
+	"windwp/nvim-autopairs",
+	{ "nvim-lualine/lualine.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require("gitsigns").setup()
-		end,
-	},
-	{
-		"stevearc/oil.nvim",
-		config = function()
-			require("oil").setup()
-		end,
-	},
-	{
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({})
 		end,
 	},
 }
