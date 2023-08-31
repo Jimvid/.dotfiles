@@ -1,80 +1,68 @@
 local fn = vim.fn
 
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+-- Bootstrap lazy
 
-if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP =
-        fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-    print("Installing packer close and reopen Neovim...")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
+vim.opt.rtp:prepend(lazypath)
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+local lazy = require("lazy")
 
--- Protected call so we don"t error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-    return
-end
+local plugins = {
+	"wbthomason/packer.nvim",
+	"nvim-lua/plenary.nvim",
+	{
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v2.x",
+		dependencies = {
+			-- LSP Support
+			{ "neovim/nvim-lspconfig" }, -- Required
+			{ "williamboman/mason.nvim" }, -- Optional
+			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
 
+			-- Autocompletion
+			{ "hrsh7th/nvim-cmp" }, -- Required
+			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
+			{ "L3MON4D3/LuaSnip" }, -- Required
+		},
+	},
+	{ "catppuccin/nvim", as = "catppuccin" },
+	{ "jose-elias-alvarez/null-ls.nvim" },
+	{ "nvim-telescope/telescope-file-browser.nvim" },
+	{ "christoomey/vim-tmux-navigator", lazy = false },
+	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+	"nvim-lua/telescope.nvim",
+	"theprimeagen/harpoon",
+	"tpope/vim-surround",
+	"nvim-tree/nvim-web-devicons",
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	},
+	{
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup()
+		end,
+	},
+	{
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	},
+}
 -- Plugins
-return packer.startup(function(use)
-    use("wbthomason/packer.nvim")
-    use("nvim-lua/plenary.nvim")
-    use({
-        "VonHeikemen/lsp-zero.nvim",
-        requires = {
-            -- LSP Support
-            { "neovim/nvim-lspconfig" },
-            { "williamboman/mason.nvim" },
-            { "williamboman/mason-lspconfig.nvim" },
 
-            -- Autocompletion
-            { "hrsh7th/nvim-cmp" },
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-path" },
-            { "saadparwaiz1/cmp_luasnip" },
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-nvim-lua" },
-
-            -- Snippets
-            { "L3MON4D3/LuaSnip" },
-            { "rafamadriz/friendly-snippets" },
-        },
-    })
-    use({ "catppuccin/nvim", as = "catppuccin" })
-    use({ "jose-elias-alvarez/null-ls.nvim" })
-    use({ "nvim-telescope/telescope-file-browser.nvim" })
-    use({ "christoomey/vim-tmux-navigator", lazy = false })
-    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-    use("nvim-lua/telescope.nvim")
-    use("theprimeagen/harpoon")
-    use({ "tpope/vim-surround" })
-    use("nvim-tree/nvim-web-devicons")
-    use({
-        "lewis6991/gitsigns.nvim",
-        config = function()
-            require("gitsigns").setup()
-        end,
-    })
-    use({
-        "stevearc/oil.nvim",
-        config = function()
-            require("oil").setup()
-        end,
-    })
-    use({
-        "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
-    })
-
-    if PACKER_BOOTSTRAP then
-        require("packer").sync()
-    end
-end)
+lazy.setup(plugins, opts)
