@@ -24,26 +24,24 @@ local plugins = {
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v2.x",
 		dependencies = {
-			-- LSP Support
-			{ "neovim/nvim-lspconfig" }, -- Required
-			{ "williamboman/mason.nvim" }, -- Optional
-			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
-
-			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" }, -- Required
-			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-			{ "L3MON4D3/LuaSnip" }, -- Required
+			{ "neovim/nvim-lspconfig" },
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
+			{ "hrsh7th/nvim-cmp" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "L3MON4D3/LuaSnip" },
 		},
 	},
 	{ "catppuccin/nvim", as = "catppuccin" },
-	{ "jose-elias-alvarez/null-ls.nvim" },
-	{ "nvim-telescope/telescope-file-browser.nvim" },
-	{ "christoomey/vim-tmux-navigator", lazy = false },
-	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+	"nvim-telescope/telescope-file-browser.nvim",
+	"jose-elias-alvarez/null-ls.nvim",
+	"christoomey/vim-tmux-navigator",
 	"nvim-lua/telescope.nvim",
 	"theprimeagen/harpoon",
 	"tpope/vim-surround",
 	"nvim-tree/nvim-web-devicons",
+	{ "nvim-lualine/lualine.nvim", dependencies = { "nvim-tree/nvim-web-devicons", opt = true } },
+	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
@@ -63,6 +61,7 @@ local plugins = {
 		end,
 	},
 }
--- Plugins
+
+local opts = {}
 
 lazy.setup(plugins, opts)
