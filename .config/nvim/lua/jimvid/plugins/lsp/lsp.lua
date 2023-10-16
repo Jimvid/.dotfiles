@@ -34,7 +34,6 @@ return {
 
 		lsp.on_attach(function(_, bufnr)
 			local opts = { buffer = bufnr, remap = false }
-			lsp.buffer_autoformat()
 
 			vim.keymap.set("n", "gd", function()
 				vim.lsp.buf.definition()
@@ -69,61 +68,6 @@ return {
 		end)
 
 		lsp.setup()
-
-		-- Setup null-ls
-		local status_null_ls, null_ls = pcall(require, "null-ls")
-
-		if not status_null_ls then
-			return
-		end
-
-		local null_opts = lsp.build_options("null-ls", {})
-
-		-- format on save
-		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-		-- lsp formatting
-		local lsp_formatting = function(bufnr)
-			vim.lsp.buf.format({
-				filter = function(client)
-					return client.name == "null-ls"
-				end,
-				bufnr = bufnr,
-			})
-		end
-
-		null_ls.setup({
-			on_attach = function(client, bufnr)
-				null_opts.on_attach(client, bufnr)
-				if client.supports_method("textDocument/formatting") then
-					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						group = augroup,
-						buffer = bufnr,
-						callback = function()
-							lsp_formatting(bufnr)
-						end,
-					})
-				end
-			end,
-			sources = {
-				null_ls.builtins.formatting.stylua,
-				null_ls.builtins.formatting.prettier.with({
-					extra_filetypes = { "svelte" },
-				}),
-				null_ls.builtins.formatting.rustfmt,
-				null_ls.builtins.diagnostics.eslint_d.with({
-					only_local = "node_modules/.bin",
-				}),
-				null_ls.builtins.diagnostics.alex,
-				null_ls.builtins.diagnostics.ltrs,
-				null_ls.builtins.code_actions.eslint_d.with({
-					only_local = "node_modules/.bin",
-				}),
-				null_ls.builtins.code_actions.ltrs,
-				null_ls.builtins.hover.dictionary,
-			},
-		})
 
 		-- setup cmp
 		local cmp = require("cmp")
