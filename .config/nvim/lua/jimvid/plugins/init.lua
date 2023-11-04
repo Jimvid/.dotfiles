@@ -4,5 +4,4 @@ return {
 	"jose-elias-alvarez/null-ls.nvim",
 	"tpope/vim-surround",
 	"nvim-tree/nvim-web-devicons",
-	"github/copilot.vim",
 }

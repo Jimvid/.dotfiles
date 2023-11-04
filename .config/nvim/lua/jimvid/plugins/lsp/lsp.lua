@@ -83,6 +83,8 @@ return {
 			sources = {
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
+				{ name = "copilot" },
+				{ name = "path" },
 			},
 			mapping = {
 				["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),

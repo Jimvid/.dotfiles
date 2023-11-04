@@ -29,7 +29,13 @@ window:
   class:
     general: Alacritty
     instance: Alacritty
-  decorations: buttonless
+  opacity: 1
+  dimensions:
+    columns: 110
+    lines: 52
   padding:
     x: 10
-    y: 20
+    y: 10
+  decorations: none
+  startup_mode: Windowed
+  dynamic_title: true
