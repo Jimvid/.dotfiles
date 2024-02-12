@@ -19,12 +19,6 @@ return {
 
 		lsp.preset("recommended")
 
-		lsp.ensure_installed({
-			"tsserver",
-			"rust_analyzer",
-			"gopls",
-		})
-
 		lsp.set_sign_icons({
 			error = "✘",
 			warn = "▲",
@@ -67,7 +61,16 @@ return {
 			end, opts)
 		end)
 
+        require('mason').setup({})
+        require('mason-lspconfig').setup({
+            ensure_installed = {'tsserver', 'rust_analyzer', "gopls", "lua_ls"},
+            handlers = {
+                lsp.default_setup,
+            },
+        })
+
 		lsp.setup()
+
 
 		-- setup cmp
 		local cmp = require("cmp")
