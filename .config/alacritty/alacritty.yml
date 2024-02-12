@@ -3,18 +3,18 @@ env:
   TERM: xterm-256color
 font:
   bold:
-    family: JetBrainsMono Nerd Font
+    family: GeistMono Nerd Font
     style: Bold
   bold_italic:
-    family: JetBrainsMono Nerd Font
+    family: GeistMono Nerd Font
     style: Bold Italic
   italic:
-    family: JetBrainsMono Nerd Font
+    family: GeistMono Nerd Font
     style: Italic
   normal:
-    family: JetBrainsMono Nerd Font
+    family: GeistMono Nerd Font
     style: Regular
-  size: 18
+  size: 14
 
 import:
   - ~/.config/alacritty/catppuccin-mocha.yml
@@ -36,6 +36,6 @@ window:
   padding:
     x: 10
     y: 10
-  decorations: none
+  decorations: Full
   startup_mode: Windowed
   dynamic_title: true
