@@ -1,6 +1,5 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/home/jimvid/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
 
 # Themes
 ZSH_THEME=""
@@ -10,6 +9,7 @@ ZSH_DISABLE_COMPFIX=true
 plugins=(
     git
 	zsh-autosuggestions
+    zsh-syntax-highlighting
     web-search
 )
 
@@ -39,5 +39,5 @@ eval "$(zoxide init zsh)"
 # Cargo
 source "$HOME/.cargo/env"
 
-# zsh-syntax-highlighting
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# zsh
+source $ZSH/oh-my-zsh.sh
