@@ -21,7 +21,7 @@ vim.opt.incsearch = true
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8
 vim.opt.backup = false
-vim.opt.wrap = false -- No Wrap lines
+vim.opt.wrap = false          -- No Wrap lines
 vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
 vim.opt.wildignore:append({ "*/node_modules/*" })
 
@@ -36,8 +36,8 @@ vim.opt.cmdheight = 0
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
-	pattern = "*",
-	command = "set nopaste",
+    pattern = "*",
+    command = "set nopaste",
 })
 
 vim.filetype.add({
