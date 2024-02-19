@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/jimvid/.oh-my-zsh"
+export ZSH="/home/jimvid/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
 
 # Themes
 ZSH_THEME=""
@@ -10,36 +11,33 @@ plugins=(
     git
 	zsh-autosuggestions
     web-search
-    zsh-syntax-highlighting
 )
-
-source $ZSH/oh-my-zsh.sh
 
 # General Aliases
 alias vim="nvim"
 alias lg="lazygit"
 alias ls="lsd"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# Intel Platform
-alias intel="arch -x86_64"
-
-# Init Starship
-eval "$(starship init zsh)"
+alias ff='vim $(rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,.git}" | fzf)'
+alias fd='cd $(find . -type d \( -name node_modules -o -name .git \) -prune -o -name "*" | fzf)'
+alias cd="z"
 
 #FZF setup
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
 export FZF_DEFAULT_OPTS='--reverse --preview "cat {}"'
 
-# find files/dirs and exclude node_modules and .git directories
-alias ff='vim $(rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,.git}" | fzf)'
-alias fd='cd $(find . -type d \( -name node_modules -o -name .git \) -prune -o -name "*" | fzf)'
 
-# bun completions
-[ -s "/Users/jimvid/.bun/_bun" ] && source "/Users/jimvid/.bun/_bun"
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# Starship
+eval "$(starship init zsh)"
+
+# Zoxide
+eval "$(zoxide init zsh)"
+
+# Cargo
+source "$HOME/.cargo/env"
+
+# zsh-syntax-highlighting
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
