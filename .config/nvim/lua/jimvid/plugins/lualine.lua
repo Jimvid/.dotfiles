@@ -7,9 +7,6 @@ return {
 
         -- configure lualine with modified theme
         lualine.setup({
-            options = {
-                theme = "catppuccin",
-            },
             sections = {
                 lualine_x = {
                     {
