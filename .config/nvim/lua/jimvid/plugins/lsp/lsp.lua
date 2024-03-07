@@ -62,7 +62,11 @@ return {
             end, opts)
         end)
 
-        require('mason').setup({})
+        require('mason').setup({
+            ui = {
+                border = "rounded",
+            }
+        })
         require('mason-lspconfig').setup({
             ensure_installed = { 'tsserver', 'rust_analyzer', "gopls", "lua_ls" },
             handlers = {

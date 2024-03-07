@@ -12,9 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({ { import = "jimvid.plugins" }, { import = "jimvid.plugins.lsp" } }, {
-    install = {
-        colorscheme = { "catppuccin" },
-    },
     checker = {
         enabled = true,
         notify = false,
@@ -22,4 +19,7 @@ require("lazy").setup({ { import = "jimvid.plugins" }, { import = "jimvid.plugin
     change_detection = {
         notify = false,
     },
+    ui = {
+        border = "rounded"
+    }
 })
