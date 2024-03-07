@@ -1,6 +1,3 @@
-vim.cmd("autocmd!")
-
-vim.o.winblend = 10
 vim.g.mapleader = " "
 
 vim.opt.cursorline = true
@@ -21,25 +18,15 @@ vim.opt.incsearch = true
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8
 vim.opt.backup = false
-vim.opt.wrap = false          -- No Wrap lines
-vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
-vim.opt.wildignore:append({ "*/node_modules/*" })
+vim.opt.wrap = false
 
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
 vim.opt.winblend = 0
 vim.opt.wildoptions = "pum"
 vim.opt.pumblend = 0
-vim.opt.background = "dark"
 
-vim.opt.cmdheight = 0
-
--- Turn off paste mode when leaving insert
-vim.api.nvim_create_autocmd("InsertLeave", {
-    pattern = "*",
-    command = "set nopaste",
-})
-
+-- Add custom filetypes
 vim.filetype.add({
     extension = {
         templ = "templ",
