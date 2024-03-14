@@ -1,0 +1,24 @@
+import = ['~/.config/alacritty/colors.toml']
+
+[env]
+TERM = 'xterm-256color'
+
+[window]
+blur = true
+padding = { x = 10, y = 10 }
+opacity = 1
+decorations = "Buttonless"
+dimensions = { columns = 110, lines = 52 }
+startup_mode = 'Windowed'
+dynamic_title = true
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+normal = { family = "GeistMono Nerd Font", style = "Regular" }
+bold = { family = "GeistMono Nerd Font", style = "Bold" }
+bold_italic = { family = "GeistMono Nerd Font", style = "Bold Italic" }
+italic = { family = "GeistMono Nerd Font", style = "Italic" }
+size = 16
