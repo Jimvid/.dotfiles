@@ -4,7 +4,7 @@ import = ['~/.config/alacritty/colors.toml']
 TERM = 'xterm-256color'
 
 [window]
-blur = true
+blur = false
 padding = { x = 10, y = 10 }
 opacity = 1
 decorations = "Buttonless"
