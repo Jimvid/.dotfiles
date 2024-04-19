@@ -15,7 +15,7 @@ plugins=(
 # General Aliases
 alias vim="nvim"
 alias lg="lazygit"
-alias ls="lsd"
+# alias ls="lsd"
 alias ff='vim $(rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,.git}" | fzf)'
 alias fd='cd $(find . -type d \( -name node_modules -o -name .git \) -prune -o -name "*" | fzf)'
 
@@ -33,3 +33,6 @@ eval "$(zoxide init zsh)"
 
 # zsh
 source $ZSH/oh-my-zsh.sh
+
+# source cargo
+[ -f ~/.cargo/env ] && source $HOME/.cargo/env
