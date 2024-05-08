@@ -1,7 +1,9 @@
 vim.g.mapleader = " "
 
-vim.opt.cursorline = true
+vim.opt.guicursor = ""
 vim.opt.termguicolors = true
+
+vim.opt.cursorline = true
 vim.opt.relativenumber = true
 
 vim.opt.tabstop = 4
@@ -22,6 +24,9 @@ vim.opt.wrap = false
 
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
+
+vim.signcolumn = "yes"
+vim.opt.colorcolumn = "80"
 
 -- Add custom filetypes
 vim.filetype.add({
