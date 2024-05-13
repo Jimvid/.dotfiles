@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 
+vim.opt.inccommand = "split"
+
 vim.opt.guicursor = ""
 vim.opt.termguicolors = true
 
