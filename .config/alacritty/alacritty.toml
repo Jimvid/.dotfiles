@@ -17,8 +17,8 @@ history = 10000
 multiplier = 3
 
 [font]
-normal = { family = "JetbrainsMonoNerd Font Mono", style = "Regular" }
-bold = { family = "JetbrainsMonoNerd Font Mono", style = "Bold" }
-bold_italic = { family = "JetbrainsMonoNerd Font Mono", style = "Bold Italic" }
-italic = { family = "JetbrainsMonoNerd Font Mono", style = "Italic" }
+
+normal = { family = "IosevkaNerd Font", style = "SemiBold" }
+bold = { family = "IosevkaNerd Font", style = "Bold" }
+
 size = 18
