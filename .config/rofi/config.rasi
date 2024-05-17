@@ -1,0 +1,154 @@
+configuration {
+    modi: "window,run,drun,filebrowser";
+	font: "JetBrainsMono Nerd Font Mono 14";
+    timeout {
+        action: "kb-cancel";
+        delay:  0;
+    }
+    rofi-firefox-search {
+        display-name: "Web search: ";
+    }
+    rofi-firefox-bookmarks {
+        display-name: "Bookmarks: ";
+    }
+    filebrowser {
+        directories-first: true;
+        sorting-method:    "name";
+        show-hidden: true;
+        display-name: "Files: ";
+    }
+    drun {
+        display-name: "Applications: ";
+    }
+    window {
+        display-name: "Workspaces: ";
+    }
+}
+
+@theme "/dev/null"
+@import "colors.rasi"
+
+window {
+    transparency:                   "real";
+    background-color:               @BG;
+    text-color:                     @FG;
+    border:                         1px;
+    border-color:                   @BDR2;
+    border-radius:                  12px;
+    width:                          700px;
+    anchor:                         center;
+    x-offset:                       0;
+    y-offset:                       0;
+}
+
+prompt {
+    enabled: 			            true;
+    padding: 			            8px;
+    background-color: 		        @BG;
+    text-color: 		            @IMG;
+}
+
+entry {
+    background-color:               @BG;
+    text-color:                     @FG;
+    placeholder-color:              #ffffff50;
+    expand:                         true;
+    horizontal-align:               0;
+    placeholder:                    "Search...";
+    blink:                          false;
+    border:                  	    0px 0px 0px 0px;
+    border-color:                   @BDR;
+    border-radius:                  0px;
+    padding:                        8px;
+}
+
+inputbar {
+	children: 		                [prompt, entry];
+    background-color:               @BG;
+    text-color:                     @FG;
+    expand:                         false;
+    border:                  	    0px 0px 0px 0px;
+    border-radius:                  0px;
+    border-color:                   @BDR;
+    margin:                         0px 0px 0px 0px;
+    padding:                        0px;
+    position:                       center;
+}
+
+case-indicator {
+    background-color:               @BG;
+    text-color:                     @FG;
+    spacing:                        0;
+}
+
+
+listview {
+    background-color:               @BG;
+    columns:                        1;
+    lines:			                7;
+    spacing:                        4px;
+    cycle:                          false;
+    dynamic:                        true;
+    layout:                         vertical;
+}
+
+mainbox {
+    background-color:               @BG;
+    children:                       [ inputbar, listview ];
+    spacing:                        15px;
+    padding:                        15px;
+    border:                         1px;
+
+    text-color:                     @FG;
+    border:                         1px;
+    border-color:                   @BG;
+    border-radius:                  4px;
+}
+
+element {
+    background-color:               @BG;
+    text-color:                     @FG;
+    orientation:                    horizontal;
+    border-radius:                  4px;
+    padding:                        6px 6px 6px 6px;
+}
+
+element-text {
+    background-color: 		        inherit;
+    text-color:       		        inherit;
+    expand:                         true;
+    horizontal-align:               0;
+    vertical-align:                 0.5;
+    margin:                         2px 0px 2px 2px;
+}
+
+element normal.urgent,
+element alternate.urgent {
+    background-color:               @UGT;
+    text-color:                     @FG;
+    border-radius:                  9px;
+}
+
+element normal.active,
+element alternate.active {
+    background-color:               @BGA;
+    text-color:                     #000000;
+}
+
+element selected {
+    background-color:               @BGA;
+    text-color:                     @SEL;
+    border:                  	    0px 0px 0px 0px;
+    border-radius:                  10px;
+    border-color:                   @BDR;
+}
+
+element selected.urgent {
+    background-color:               @UGT;
+    text-color:                     @FG;
+}
+
+element selected.active {
+    background-color:               @BGA;
+    color:                          inherit;
+}
