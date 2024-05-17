@@ -6,7 +6,7 @@ TERM = 'xterm-256color'
 [window]
 blur = false
 padding = { x = 10, y = 10 }
-opacity = 1
+opacity = 0.90
 decorations = "Buttonless"
 dimensions = { columns = 110, lines = 52 }
 startup_mode = 'Windowed'
@@ -17,8 +17,8 @@ history = 10000
 multiplier = 3
 
 [font]
-normal = { family = "GeistMono Nerd Font", style = "Regular" }
-bold = { family = "GeistMono Nerd Font", style = "Bold" }
-bold_italic = { family = "GeistMono Nerd Font", style = "Bold Italic" }
-italic = { family = "GeistMono Nerd Font", style = "Italic" }
-size = 16
+normal = { family = "JetbrainsMonoNerd Font Mono", style = "Regular" }
+bold = { family = "JetbrainsMonoNerd Font Mono", style = "Bold" }
+bold_italic = { family = "JetbrainsMonoNerd Font Mono", style = "Bold Italic" }
+italic = { family = "JetbrainsMonoNerd Font Mono", style = "Italic" }
+size = 18
