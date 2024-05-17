@@ -5,4 +5,4 @@
 [init]
 	defaultBranch = main
 [core]
-	excludesfile = /Users/jimvid/.gitignore
+	excludesfile = home/jimvid/.gitignore
