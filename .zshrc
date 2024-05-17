@@ -9,6 +9,9 @@ ZSH_DISABLE_COMPFIX=true
 plugins=(
     git
 	zsh-autosuggestions
+    fzf-tab
+    zsh-syntax-highlighting
+    command-not-found
 )
 
 # General Aliases
@@ -21,15 +24,13 @@ alias fd='cd $(find . -type d \( -name node_modules -o -name .git \) -prune -o -
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
 export FZF_DEFAULT_OPTS='--reverse --preview "cat {}"'
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
 # Zoxide
 eval "$(zoxide init zsh)"
 
-# zsh
-source $ZSH/oh-my-zsh.sh
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 # source cargo
 [ -f ~/.cargo/env ] && source $HOME/.cargo/env
+
+# zsh
+source $ZSH/oh-my-zsh.sh
