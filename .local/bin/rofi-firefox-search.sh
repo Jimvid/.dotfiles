@@ -2,35 +2,45 @@
 
 search_term="$@"
 
-if [ -n "$search_term" ]; then
-    if [ "$search_term" = "Github" ]; then
-        firefox -new-tab -url "https://www.github.com"
-        exit 0
-    elif [ "$search_term" = "Youtube" ]; then
-        firefox -new-tab -url "https://www.youtube.com"
-        exit 0
-    elif [ "$search_term" = "ChatGPT" ]; then
-        firefox -new-tab -url "https://www.chatgpt.com"
-        exit 0
-    elif [ "$search_term" = "MonkeyType" ]; then
-        firefox -new-tab -url "https://www.monkeytype.com"
-        exit 0
-    elif [ "$search_term" = "Proton - Mail" ]; then
-        firefox -new-tab -url "https://mail.proton.me/u/1/inbox"
-        exit 0
-    elif [ "$search_term" = "Proton - Mail" ]; then
-        firefox -new-tab -url "https://mail.proton.me/u/1/inbox"
-        exit 0
-    elif [ "$search_term" = "Proton - Drive" ]; then
-        firefox -new-tab -url "https://drive.proton.me/u/1"
-        exit 0
-    elif [ "$search_term" = "Proton - Calendar" ]; then
-        firefox -new-tab -url "https://calendar.proton.me/u/1"
-        exit 0
+open_firefox() {
+    local url=$1
+
+    # Check if Firefox is already running
+    if pgrep -x "firefox" > /dev/null; then
+        firefox -new-tab "$url" &
     else
-        firefox -new-tab -url "https://duckduckgo.com/?q=$search_term"
-        exit 0
+        nohup firefox "$url" >/dev/null 2>&1 &
     fi
+}
+
+if [ -n "$search_term" ]; then
+    case "$search_term" in
+        "Github")
+            open_firefox "https://www.github.com"
+            ;;
+        "Youtube")
+            open_firefox "https://www.youtube.com"
+            ;;
+        "ChatGPT")
+            open_firefox "https://www.chatgpt.com"
+            ;;
+        "MonkeyType")
+            open_firefox "https://www.monkeytype.com"
+            ;;
+        "Proton - Mail")
+            open_firefox "https://mail.proton.me/u/1/inbox"
+            ;;
+        "Proton - Drive")
+            open_firefox "https://drive.proton.me/u/1"
+            ;;
+        "Proton - Calendar")
+            open_firefox "https://calendar.proton.me/u/1"
+            ;;
+        *)
+            open_firefox "https://duckduckgo.com/?q=$search_term"
+            ;;
+    esac
+    exit 0
 fi
 
 echo "Github"
