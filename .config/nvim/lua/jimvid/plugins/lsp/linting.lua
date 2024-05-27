@@ -11,7 +11,6 @@ return {
             typescriptreact = { "eslint_d" },
             svelte = { "eslint_d" },
             astro = { "eslint_d" },
-            go = { "golangcilint" },
             python = { "pylint" },
         }
 

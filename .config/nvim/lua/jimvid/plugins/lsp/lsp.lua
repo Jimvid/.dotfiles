@@ -67,7 +67,7 @@ return {
             }
         })
         require('mason-lspconfig').setup({
-            ensure_installed = { 'tsserver', 'rust_analyzer', "lua_ls" },
+            ensure_installed = { 'tsserver', 'rust_analyzer', "lua_ls", "gopls" },
             handlers = {
                 lsp.default_setup,
             },
@@ -86,6 +86,7 @@ return {
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
         local cmp_action = require("lsp-zero").cmp_action()
         require("luasnip.loaders.from_vscode").lazy_load()
+
         local lspkind = require('lspkind')
 
         cmp.setup({
