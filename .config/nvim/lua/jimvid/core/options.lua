@@ -27,12 +27,11 @@ vim.opt.wrap = false
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
 
-vim.signcolumn = "yes"
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"
 
 -- Add custom filetypes
 vim.filetype.add({
-    extension = {
-        templ = "templ",
-    },
+	extension = {
+		templ = "templ",
+	},
 })
