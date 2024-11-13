@@ -67,16 +67,10 @@ return {
 			},
 		})
 		require("mason-lspconfig").setup({
-			ensure_installed = { "tsserver", "rust_analyzer", "lua_ls", "gopls" },
+			ensure_installed = { "ts_ls", "rust_analyzer", "lua_ls", "gopls" },
 			handlers = {
 				lsp.default_setup,
 			},
-		})
-
-		-- Made LSP very slow for some reason, this aims to fix this. At least temporarily
-		local lspconfig = require("lspconfig")
-		lspconfig.tsserver.setup({
-			root_dir = require("lspconfig.util").root_pattern(".git"),
 		})
 
 		lsp.setup()
