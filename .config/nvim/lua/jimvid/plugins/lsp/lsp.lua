@@ -2,7 +2,11 @@ return {
     {
         'williamboman/mason.nvim',
         lazy = false,
-        opts = {},
+        opts = {
+            ui = {
+                border = 'rounded'
+            }
+        },
     },
 
     -- Autocompletion
