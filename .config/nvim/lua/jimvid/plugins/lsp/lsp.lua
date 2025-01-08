@@ -13,6 +13,7 @@ return {
     {
         'hrsh7th/nvim-cmp',
         event = 'InsertEnter',
+        dependencies = { "L3MON4D3/LuaSnip" },
         config = function()
             local cmp = require('cmp')
             local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -60,7 +61,7 @@ return {
     -- LSP
     {
         'neovim/nvim-lspconfig',
-        cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+        -- cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
@@ -72,6 +73,7 @@ return {
         end,
         config = function()
             local lsp_defaults = require('lspconfig').util.default_config
+            local lsp = require('lspconfig').util.default_config
 
             -- Add cmp_nvim_lsp capabilities settings to lspconfig
             -- This should be executed before you configure any language server
@@ -105,6 +107,19 @@ return {
                     function(server_name)
                         require('lspconfig')[server_name].setup({})
                     end,
+                    astro = function()
+                        require('lspconfig').astro.setup({
+                            cmd = { 'astro-ls', '--stdio' },
+                            filetypes = { "astro" },
+                            init_options = {
+                                typescript = {}
+                            },
+                            single_file_support = true, -- Add this line
+                            on_attach = function(client, bufnr)
+                                print('Astro LSP attached')
+                            end
+                        })
+                    end
                 }
             })
         end
