@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 
+-- Sync clipboard with OS clipboard
+vim.opt.clipboard:append { 'unnamedplus' }
 vim.opt.inccommand = "split"
 
 vim.opt.guicursor = ""
