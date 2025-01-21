@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 
+vim.opt.titlestring = "%t%( %M%)"
+
 -- Sync clipboard with OS clipboard
 vim.opt.clipboard:append { 'unnamedplus' }
 vim.opt.inccommand = "split"
@@ -33,7 +35,7 @@ vim.opt.termguicolors = true
 
 -- Add custom filetypes
 vim.filetype.add({
-	extension = {
-		templ = "templ",
-	},
+    extension = {
+        templ = "templ",
+    },
 })
