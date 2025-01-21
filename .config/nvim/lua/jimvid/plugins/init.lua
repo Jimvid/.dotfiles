@@ -3,6 +3,6 @@ return {
     "christoomey/vim-tmux-navigator",
     "tpope/vim-surround",
     "nvim-tree/nvim-web-devicons",
-    "nvim-tree/nvim-web-devicons",
-    "onsails/lspkind.nvim"
+    "onsails/lspkind.nvim",
+    "mg979/vim-visual-multi"
 }
