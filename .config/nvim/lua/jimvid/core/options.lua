@@ -1,10 +1,6 @@
 vim.g.mapleader = " "
 
-vim.opt.titlestring = "%t%( %M%)"
-
--- Sync clipboard with OS clipboard
-vim.opt.clipboard:append { 'unnamedplus' }
-vim.opt.inccommand = "split"
+-- vim.opt.titlestring = "%t%( %M%)"
 
 vim.opt.guicursor = ""
 vim.opt.termguicolors = true
