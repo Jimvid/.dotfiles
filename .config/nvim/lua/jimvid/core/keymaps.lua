@@ -29,5 +29,7 @@ vim.keymap.set("n", "<C-j>", ":TmuxNavigateDown<CR>", { silent = true })
 vim.keymap.set("n", "<C-k>", ":TmuxNavigateUp<CR>", { silent = true })
 vim.keymap.set("n", "<C-l>", ":TmuxNavigateRight<CR>", { silent = true })
 
+vim.keymap.set("n", "<leader>NN", ":NoNeckPain<CR>", { silent = true })
+
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessions.sh<CR>", { silent = true })
