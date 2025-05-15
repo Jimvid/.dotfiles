@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 
--- vim.opt.titlestring = "%t%( %M%)"
+vim.opt.clipboard = 'unnamedplus' -- sync cliboard with system clipboard
+vim.opt.titlestring = "%t%( %M%)"
 
 vim.opt.guicursor = ""
 vim.opt.termguicolors = true
