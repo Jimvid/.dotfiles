@@ -36,3 +36,10 @@ vim.filetype.add({
         templ = "templ",
     },
 })
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    {
+        border = "rounded", -- or "single", "double", "shadow", etc.
+    }
+)
