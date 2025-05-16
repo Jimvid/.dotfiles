@@ -1,5 +1,7 @@
 node_modules/
 .DS_Store
 .config/github-copilot/
-.local/
+.local/*
+!.local/bin/
+!.local/share/fonts
 .config/yarn/global/
