@@ -2,7 +2,7 @@
   "layer": "top", "position": "top",
   "modules-left": ["custom/logo", "clock"],
   "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["pulseaudio", "pulseaudio/slider", "bluetooth", "network",  "battery" ],
+  "modules-right": ["tray", "pulseaudio", "pulseaudio/slider","power-profiles-daemon", "bluetooth", "network", "battery"],
   "reload_style_on_change":true,
 
   "custom/logo": {
@@ -16,13 +16,11 @@
 		"2": "",
 		"3": "",
 		"4": "",
-		"5": "",
-		"6": "",
 		"active": "",
 		"default": "" 
 	},
     "persistent-workspaces": {
-       "*": [ 2, 3, 4, 5]
+       "*": [1, 2, 3, 4]
     }
 },
 "clock": {
@@ -80,6 +78,8 @@
     "pulseaudio": {
     "format": "{icon} ",
     "format-muted": "",
+    "format-bluetooth-muted": "",
+    "format-source-muted": "",
     "format-icons": ["", "", ""],
     "tooltip": false,
     },
@@ -87,5 +87,15 @@
         "min": 0,
         "max": 100,
         "orientation": "horizontal",
-    }
+    },
+"power-profiles-daemon": {
+  "format": "{icon} ",
+  "tooltip": true,
+  "format-icons": {
+    "default": "",
+    "performance": "",
+    "balanced": "",
+    "power-saver": ""
+  }
+}
 }

@@ -14,7 +14,7 @@ window#waybar {
 
 #custom-logo {
   padding: 0 10px;
-  color: @blue;
+  color: @accent;
 }
 
 .modules-right {
@@ -23,14 +23,14 @@ window#waybar {
   margin-top: 4px;
   margin-right: 8px;
   background: #191724;
-  color: @blue;
+  color: @accent;
 }
 
 .modules-center {
   margin-top: 4px;
   border-radius: 15px;
   background: #191724;
-  color: @blue;
+  color: @accent;
 }
 
 .modules-left {
@@ -39,7 +39,7 @@ window#waybar {
   margin-left: 8px;
   margin-top: 4px;
   background: @base;
-  color: @blue;
+  color: @accent;
 }
 
 #battery,
@@ -47,6 +47,7 @@ window#waybar {
 #network,
 #tray,
 #window,
+#power-profiles-daemon,
 #workspaces,
 #cpu,
 #disk,
@@ -54,20 +55,24 @@ window#waybar {
   padding: 0 8px;
 }
 
+#pulseaudio {
+  padding: 0px 0px 0px 8px;
+}
+
 #workspaces button {
-  color: @blue;
+  color: @accent;
 }
 
 #workspaces button.active {
-  color: @yellow;
+  color: @accent-contrast;
 }
 
 #workspaces button.occupied {
-  color: @blue;
+  color: @accent;
 }
 
 #workspaces button.empty {
-  color: @blue;
+  color: @accent;
 }
 
 #workspaces button.urgent {
@@ -75,7 +80,7 @@ window#waybar {
 }
 
 #clock {
-  color: @blue;
+  color: @accent;
 }
 
 #battery.charging {
@@ -122,5 +127,5 @@ window#waybar {
 #pulseaudio-slider highlight {
   min-width: 10px;
   border-radius: 4px;
-  background-color: @blue;
+  background-color: @accent;
 }
