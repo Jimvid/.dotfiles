@@ -15,6 +15,7 @@ return {
         end
 
         local jest = require("neotest-jest")
+        local go   = require("neotest-go")
 
         neotest.setup({
             summary = {
@@ -27,6 +28,12 @@ return {
                         return vim.fn.getcwd()
                     end,
                 }),
+                go({
+                    experimental = {
+                        test_table = true,
+                    },
+                    args = { "-count=1", "-timeout=60s" }
+                })
             },
         })
     end,
