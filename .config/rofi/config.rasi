@@ -1,6 +1,6 @@
 configuration {
     modi: "window,run,drun,filebrowser";
-	font: "JetBrainsMono Nerd Font Mono 14";
+	font: "GeistMono Nerd Font Mono 14";
     timeout {
         action: "kb-cancel";
         delay:  0;
@@ -30,11 +30,11 @@ configuration {
 
 window {
     transparency:                   "real";
-    background-color:               @BG;
-    text-color:                     @FG;
-    border:                         1px;
-    border-color:                   @BDR2;
-    border-radius:                  12px;
+    background-color:               @BGA;
+    text-color:                     @BGA;
+    border:                         2px;
+    border-color:                   @BDR;
+    border-radius:                  4px;
     width:                          700px;
     anchor:                         center;
     x-offset:                       0;
@@ -45,7 +45,7 @@ prompt {
     enabled: 			            true;
     padding: 			            8px;
     background-color: 		        @BG;
-    text-color: 		            @IMG;
+    text-color: 		            @ACC;
 }
 
 entry {
@@ -54,10 +54,7 @@ entry {
     placeholder-color:              #ffffff50;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search...";
     blink:                          false;
-    border:                  	    0px 0px 0px 0px;
-    border-color:                   @BDR;
     border-radius:                  0px;
     padding:                        8px;
 }
@@ -69,9 +66,7 @@ inputbar {
     expand:                         false;
     border:                  	    0px 0px 0px 0px;
     border-radius:                  0px;
-    border-color:                   @BDR;
-    margin:                         0px 0px 0px 0px;
-    padding:                        0px;
+    padding:                        4px;
     position:                       center;
 }
 
@@ -95,13 +90,10 @@ listview {
 mainbox {
     background-color:               @BG;
     children:                       [ inputbar, listview ];
-    spacing:                        15px;
-    padding:                        15px;
-    border:                         1px;
-
+    spacing:                        12px;
     text-color:                     @FG;
     border:                         1px;
-    border-color:                   @BG;
+    border-color:                   @BDR;
     border-radius:                  4px;
 }
 
@@ -109,8 +101,7 @@ element {
     background-color:               @BG;
     text-color:                     @FG;
     orientation:                    horizontal;
-    border-radius:                  4px;
-    padding:                        6px 6px 6px 6px;
+    padding:                        4px 8px; 
 }
 
 element-text {
@@ -122,33 +113,6 @@ element-text {
     margin:                         2px 0px 2px 2px;
 }
 
-element normal.urgent,
-element alternate.urgent {
-    background-color:               @UGT;
-    text-color:                     @FG;
-    border-radius:                  9px;
-}
-
-element normal.active,
-element alternate.active {
-    background-color:               @BGA;
-    text-color:                     #000000;
-}
-
 element selected {
     background-color:               @BGA;
-    text-color:                     @SEL;
-    border:                  	    0px 0px 0px 0px;
-    border-radius:                  10px;
-    border-color:                   @BDR;
-}
-
-element selected.urgent {
-    background-color:               @UGT;
-    text-color:                     @FG;
-}
-
-element selected.active {
-    background-color:               @BGA;
-    color:                          inherit;
 }
