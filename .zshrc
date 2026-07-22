@@ -45,3 +45,15 @@ export NVM_DIR="$HOME/.config/nvm"
 
 # Go
 export PATH=$PATH:/usr/local/go/bin
+
+# Flutter
+export PATH="$HOME/dev/flutter/bin:$PATH"
+export CHROME_EXECUTABLE=$(which chromium)
+
+
+# Added by flyctl installer
+export FLYCTL_INSTALL="/home/jimvid/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
+# opencode
+export PATH=/home/jimvid/.opencode/bin:$PATH
