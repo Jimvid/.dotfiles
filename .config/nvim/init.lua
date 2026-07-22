@@ -1,2 +1,1 @@
-require("jimvid.core")
-require("jimvid.lazy")
+require("config.lazy")

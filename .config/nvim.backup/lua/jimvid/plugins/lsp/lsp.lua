@@ -89,6 +89,14 @@ return {
                 desc = 'LSP actions',
                 callback = function(event)
                     local opts = { buffer = event.buf }
+                    local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+                    -- Enable built-in native completion for this client
+                    if client and client.supports_method('textDocument/completion') then
+                        vim.lsp.completion.enable(true, client.id)
+                    end
+
+                    -- Custom keymaps (maintains your existing muscle memory)
                     vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
                     vim.keymap.set('n', 'vd', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
                     vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
