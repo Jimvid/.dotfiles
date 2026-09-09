@@ -1,0 +1,28 @@
+onboarding = false
+
+[ui.toast]
+delivery = "herdr"
+
+[ui.sound]
+enabled = true
+
+[ui]
+status_indicators = "symbols"
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[keys]
+split_vertical = "prefix+pipe"
+split_horizontal = "prefix+minus"
+toggle_sidebar = "prefix+m"
+previous_tab = "alt+shift+h"
+next_tab = "alt+shift+l"
+
+[[keys.command]]
+key = "prefix+f"
+type = "popup"
+command = "~/.local/bin/herdr-sessions.sh"
+width = "80%"
+height = "40%"

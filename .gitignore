@@ -5,3 +5,6 @@ node_modules/
 !.local/bin/
 !.local/share/fonts
 .config/yarn/global/
+.config/herdr/herdr*.log
+.config/herdr/session.json
+.config/herdr/state.json
