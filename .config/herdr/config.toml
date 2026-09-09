@@ -16,7 +16,7 @@ auto_switch = false
 
 [keys]
 settings = "prefix+."
-split_vertical = "prefix+pipe"
+split_vertical = "prefix+v"
 split_horizontal = "prefix+minus"
 toggle_sidebar = "prefix+m"
 previous_tab = "alt+shift+h"
@@ -31,17 +31,20 @@ navigate_pane_up = "ctrl+k"
 navigate_pane_right = "ctrl+l"
 navigate_workspace_up = "k"
 navigate_workspace_down = "j"
+switch_workspace = "prefix+shift+1..9"
 
 [[keys.command]]
 key = "prefix+s"
 type = "popup"
 command = "~/.local/bin/herdr-switch.sh"
-width = "40%"
-height = "40%"
+description = "switch workspace"
+width = "50%"
+height = "50%"
 
 [[keys.command]]
 key = "prefix+f"
 type = "popup"
 command = "~/.local/bin/herdr-sessions.sh"
-width = "80%"
-height = "40%"
+description = "open or create project workspace"
+width = "50%"
+height = "50%"

@@ -6,7 +6,7 @@ else
     selected=$({
         find ~/dev/work ~/dev/personal -mindepth 1 -maxdepth 1 -type d
         find ~/dev/work ~/dev/personal -mindepth 3 -maxdepth 3 -type d -path '*/apps/*'
-    } | fzf)
+    } | fzf --no-preview)
 fi
 
 if [[ -z $selected ]]; then

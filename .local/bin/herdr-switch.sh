@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 selected=$(herdr workspace list 2>/dev/null | \
-    jq -r '.result.workspaces[] | .label' | fzf --no-preview)
+    jq -r '.result.workspaces[] | .label' | \
+    fzf --no-preview --header "workspaces" \
+        --bind "ctrl-x:execute-silent(~/.local/bin/herdr-close-by-label.sh {})+reload(herdr workspace list 2>/dev/null | jq -r '.result.workspaces[] | .label')")
 
 [[ -z $selected ]] && exit 0
 
