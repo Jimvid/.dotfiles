@@ -47,6 +47,11 @@
       "space v c a": "editor::ToggleCodeActions",
       "shift-k": "editor::Hover",
       "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDeclaration",
+      "v r r": "editor::FindAllReferences",
+      "v d": "diagnostics::Deploy",
+      "v i m": "editor::GoToImplementation",
+      "v t d": "editor::GoToTypeDefinition",
     },
   },
   {
