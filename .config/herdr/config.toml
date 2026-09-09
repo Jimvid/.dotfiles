@@ -8,17 +8,36 @@ enabled = true
 
 [ui]
 status_indicators = "symbols"
+sidebar_collapsed_mode = "hidden"
 
 [theme]
 name = "catppuccin"
 auto_switch = false
 
 [keys]
+settings = "prefix+."
 split_vertical = "prefix+pipe"
 split_horizontal = "prefix+minus"
 toggle_sidebar = "prefix+m"
 previous_tab = "alt+shift+h"
 next_tab = "alt+shift+l"
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+navigate_pane_left = "ctrl+h"
+navigate_pane_down = "ctrl+j"
+navigate_pane_up = "ctrl+k"
+navigate_pane_right = "ctrl+l"
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+
+[[keys.command]]
+key = "prefix+s"
+type = "popup"
+command = "~/.local/bin/herdr-switch.sh"
+width = "40%"
+height = "40%"
 
 [[keys.command]]
 key = "prefix+f"
