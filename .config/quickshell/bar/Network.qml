@@ -12,7 +12,7 @@ Glyph {
     readonly property var activeNetwork: primary?.networks?.values.find(n => n.connected) ?? null
     property string ip: ""
 
-    text: !primary ? "\ueb01" : primary.type === DeviceType.Wifi ? "\uf1eb" : "\uef09"
+    icon: !primary ? "wifi-off" : primary.type === DeviceType.Wifi ? "wifi" : "ethernet-port"
     color: primary ? Theme.accent : Theme.subtle
     tip: !primary ? "disconnected"
        : primary.type === DeviceType.Wifi

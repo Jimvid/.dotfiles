@@ -8,6 +8,7 @@ PopupWindow {
     id: popup
     required property Item target
     visible: false
+    grabFocus: true
 
     anchor.item: target
     anchor.edges: Edges.Bottom
@@ -37,8 +38,8 @@ PopupWindow {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text {
-                    text: "❮"; color: Theme.subtle; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize
+                Icon {
+                    name: "chevron-left"; size: 14; color: Theme.subtle
                     MouseArea { anchors.fill: parent; onClicked: popup.shown = new Date(popup.shown.getFullYear(), popup.shown.getMonth() - 1, 1) }
                 }
                 Text {
@@ -47,8 +48,8 @@ PopupWindow {
                     text: Qt.formatDate(popup.shown, "MMMM yyyy")
                     color: Theme.text; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize; font.bold: true
                 }
-                Text {
-                    text: "❯"; color: Theme.subtle; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize
+                Icon {
+                    name: "chevron-right"; size: 14; color: Theme.subtle
                     MouseArea { anchors.fill: parent; onClicked: popup.shown = new Date(popup.shown.getFullYear(), popup.shown.getMonth() + 1, 1) }
                 }
             }

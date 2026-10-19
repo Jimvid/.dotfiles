@@ -15,12 +15,12 @@ Glyph {
     readonly property bool critical: !charging && pct <= 20
     property bool showTime: false
 
-    readonly property var icons: ["\u{f007b}", "\u{f007c}", "\u{f007e}", "\u{f0080}", "\u{f0082}", "\u{f0079}"]
-    readonly property string icon: charging ? "\u{f0084}" : icons[Math.min(5, Math.floor(pct / 100 * 6))]
 
     function fmt(s) { const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60); return h + ":" + (m < 10 ? "0" : "") + m; }
 
-    text: (showTime ? fmt(charging ? dev.timeToFull : dev.timeToEmpty) : pct + "%") + "  " + icon + " "
+    text: showTime ? fmt(charging ? dev.timeToFull : dev.timeToEmpty) : pct + "%"
+    icon: charging ? "battery-charging" : critical ? "battery-warning"
+        : pct > 80 ? "battery-full" : pct > 45 ? "battery-medium" : pct > 15 ? "battery-low" : "battery"
     color: critical ? Theme.text : warning ? Theme.love : charging ? Theme.pine : Theme.accent
     tip: charging ? (dev.state === UPowerDeviceState.FullyCharged ? "full" : fmt(dev.timeToFull) + " until full")
                   : fmt(dev.timeToEmpty) + " left"

@@ -9,6 +9,7 @@ PopupWindow {
     required property Item target
     property BluetoothAdapter adapter
     visible: false
+    grabFocus: true
 
     anchor.item: target
     anchor.edges: Edges.Bottom

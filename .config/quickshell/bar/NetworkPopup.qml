@@ -10,6 +10,7 @@ PopupWindow {
     required property Item target
     property var wifi
     visible: false
+    grabFocus: true
 
     anchor.item: target
     anchor.edges: Edges.Bottom
@@ -71,10 +72,10 @@ PopupWindow {
 
                     RowLayout {
                         Layout.fillWidth: true
-                        Text {
-                            text: row.modelData.signalStrength > 0.66 ? "\uf1eb" : row.modelData.signalStrength > 0.33 ? "\uf1eb" : "\uf1eb"
+                        Icon {
+                            name: "wifi"; size: 14
                             opacity: 0.4 + 0.6 * row.modelData.signalStrength
-                            color: Theme.accent; font.family: Theme.mono; font.pixelSize: Theme.uiFontSize
+                            color: Theme.accent
                         }
                         Text {
                             Layout.fillWidth: true
@@ -92,10 +93,9 @@ PopupWindow {
                                 }
                             }
                         }
-                        Text {
+                        Icon {
                             visible: row.modelData.security !== WifiSecurityType.Open
-                            text: "\uf023"
-                            color: Theme.subtle; font.family: Theme.mono; font.pixelSize: Theme.uiFontSize
+                            name: "lock"; size: 12; color: Theme.subtle
                         }
                     }
 

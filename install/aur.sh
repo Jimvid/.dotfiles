@@ -3,7 +3,7 @@
 set -e
 
 # docker-desktop ships its own compose and buildx plugins and refuses to install next to the standalone ones
-pacman -Qq docker-compose docker-buildx 2>/dev/null | xargs -r sudo pacman -Rns --noconfirm
+pacman -Qq docker-compose docker-buildx networkmanager_dmenu 2>/dev/null | xargs -r sudo pacman -Rns --noconfirm
 
 yay -S --needed --noconfirm \
     slack-desktop-wayland \
@@ -11,5 +11,4 @@ yay -S --needed --noconfirm \
     google-chrome \
     docker-desktop \
     1password \
-    networkmanager_dmenu \
     sddm-astronaut-theme

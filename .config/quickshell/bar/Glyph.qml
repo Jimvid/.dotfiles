@@ -1,25 +1,42 @@
 import QtQuick
 import qs
 
-// one bar module: a mono/nerd-font label with padding, hover tooltip and click/scroll signals
+// one bar module: optional text label and/or lucide icon, padding, hover tooltip, click/scroll signals
 Item {
     id: root
-    property alias text: label.text
-    property alias color: label.color
+    property string text: ""
+    property string icon: ""
+    property color color: Theme.accent
     property string tip: ""
     property int padding: Theme.pillPadding
+    property int iconSize: 16
+    property bool mono: true      // nerd-font glyphs need the mono font; numbers read better in it too
     signal clicked(var mouse)
     signal scrolled(int delta)
 
-    implicitWidth: label.implicitWidth + 2 * padding
+    implicitWidth: row.implicitWidth + 2 * padding
     implicitHeight: Theme.barHeight
 
-    Text {
-        id: label
+    Row {
+        id: row
         anchors.centerIn: parent
-        font.family: Theme.mono
-        font.pixelSize: Theme.fontSize
-        color: Theme.accent
+        spacing: 6
+
+        Text {
+            visible: root.text !== ""
+            anchors.verticalCenter: parent.verticalCenter
+            text: root.text
+            font.family: root.mono ? Theme.mono : Theme.ui
+            font.pixelSize: Theme.fontSize
+            color: root.color
+        }
+        Icon {
+            visible: root.icon !== ""
+            anchors.verticalCenter: parent.verticalCenter
+            name: root.icon
+            size: root.iconSize
+            color: root.color
+        }
     }
 
     MouseArea {

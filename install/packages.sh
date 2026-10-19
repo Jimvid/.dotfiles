@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-# uwsm only adds a second, unsupported Hyprland entry to the sddm menu
-pacman -Qq uwsm 2>/dev/null | xargs -r sudo pacman -Rns --noconfirm
+# replaced: uwsm (second sddm entry), waybar (quickshell bar)
+pacman -Qq uwsm waybar 2>/dev/null | xargs -r sudo pacman -Rns --noconfirm
 
 sudo pacman -S --needed --noconfirm \
     `# base system` \
@@ -18,7 +18,7 @@ sudo pacman -S --needed --noconfirm \
     gst-plugin-pipewire sof-firmware \
     `# desktop (hyprland)` \
     hyprland hypridle hyprlock hyprpaper hyprpicker hyprpolkitagent sddm fprintd \
-    waybar rofi dunst libnotify kanshi playerctl quickshell qt6-svg \
+    rofi dunst libnotify kanshi playerctl quickshell qt6-svg \
     xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xdg-utils xdg-user-dirs \
     qt5-wayland qt6-wayland qt6-virtualkeyboard \
     grim slurp wl-clipboard brightnessctl python-pillow \

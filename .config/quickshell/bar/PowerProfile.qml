@@ -3,7 +3,7 @@ import qs
 
 Glyph {
     readonly property int profile: PowerProfiles.profile
-    text: profile === PowerProfile.Performance ? "\uf0e7" : profile === PowerProfile.PowerSaver ? "\uf06c" : "\uf24e"
+    icon: profile === PowerProfile.Performance ? "zap" : profile === PowerProfile.PowerSaver ? "leaf" : "gauge"
     tip: profile === PowerProfile.Performance ? "performance" : profile === PowerProfile.PowerSaver ? "power saver" : "balanced"
     onClicked: {
         if (profile === PowerProfile.PowerSaver) PowerProfiles.profile = PowerProfile.Balanced;

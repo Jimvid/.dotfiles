@@ -21,9 +21,6 @@ alias lg="lazygit"
 alias ff='vim $(rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,.git}" | fzf)'
 alias fd='cd $(find . -type d \( -name node_modules -o -name .git \) -prune -o -name "*" | fzf)'
 
-# Reload waybar on hypr
-alias waybar-reload='pkill waybar && hyprctl dispatch exec waybar'
-
 #FZF
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
 export FZF_DEFAULT_OPTS='--reverse --preview "cat {}"'

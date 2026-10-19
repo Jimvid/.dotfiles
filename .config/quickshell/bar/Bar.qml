@@ -22,6 +22,7 @@ PanelWindow {
     Pill {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
+        sidePadding: Theme.pillPadding
         Workspaces { screen: bar.screen }
     }
 

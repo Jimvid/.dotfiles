@@ -13,7 +13,7 @@ Row {
     function setVolume(v) { if (sink?.audio) sink.audio.volume = Math.max(0, Math.min(1, v)); }
 
     Glyph {
-        text: root.muted ? "\ueee8" : root.vol < 0.34 ? "\uf026" : root.vol < 0.67 ? "\uf027" : "\uf028"
+        icon: root.muted ? "volume-x" : root.vol < 0.34 ? "volume" : root.vol < 0.67 ? "volume-1" : "volume-2"
         color: root.muted ? Theme.subtle : Theme.accent
         tip: Math.round(root.vol * 100) + "%"
         onClicked: if (root.sink?.audio) root.sink.audio.muted = !root.muted

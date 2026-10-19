@@ -16,11 +16,9 @@ links=(
     .config/ghostty
     .config/hypr
     .config/kanshi
-    .config/networkmanager-dmenu
     .config/quickshell
     .config/nvim
     .config/rofi
-    .config/waybar
     .config/zed
     .config/herdr/config.toml
     .local/share/fonts
