@@ -8,7 +8,7 @@ import qs
 // tray icons styled like the rest of the bar: known apps get a lucide icon, anything else is tinted monochrome
 Row {
     id: tray
-    spacing: 4
+    spacing: Theme.spacing   // each entry already carries glyph padding, so tray icons sit on the same rhythm as the modules
 
     // tray item id (substring, case-insensitive) -> lucide icon in icons/
     readonly property var overrides: ({ "1password": "key-round" })
@@ -17,8 +17,6 @@ Row {
         for (const key in overrides) if (id.includes(key)) return overrides[key];
         return "";
     }
-    leftPadding: Theme.pillPadding
-    rightPadding: Theme.pillPadding
     visible: SystemTray.items.values.length > 0
 
     Repeater {
@@ -26,7 +24,7 @@ Row {
         delegate: Item {
             id: entry
             required property SystemTrayItem modelData
-            implicitWidth: 20
+            implicitWidth: 16 + 2 * Theme.pillPadding
             implicitHeight: Theme.barHeight
 
             readonly property string lucide: tray.lucideFor(modelData)
