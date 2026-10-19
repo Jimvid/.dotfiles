@@ -1,11 +1,14 @@
-#!/bin/zsh
+#!/bin/bash
+# PROFILE=/dev/null keeps the nvm installer from appending to the linked ~/.zshrc
 set -e
 
-if [ ! -d "$HOME/.config/nvm" ]; then
-  mkdir -p ~/.config/nvm
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+export NVM_DIR="$HOME/.config/nvm"
+
+if [ ! -d "$NVM_DIR" ]; then
+  mkdir -p "$NVM_DIR"
+  PROFILE=/dev/null bash -c "$(curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh)"
 fi
 
-source ~/.zshrc
+. "$NVM_DIR/nvm.sh"
 nvm install --lts
 nvm use --lts

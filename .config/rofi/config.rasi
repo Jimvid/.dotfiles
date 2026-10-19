@@ -1,27 +1,14 @@
 configuration {
-    modi: "window,run,drun,filebrowser";
-	font: "GeistMono Nerd Font Mono 14";
-    timeout {
-        action: "kb-cancel";
-        delay:  0;
-    }
-    rofi-firefox-search {
-        display-name: "Web search: ";
-    }
-    rofi-firefox-bookmarks {
-        display-name: "Bookmarks: ";
-    }
-    filebrowser {
-        directories-first: true;
-        sorting-method:    "name";
-        show-hidden: true;
-        display-name: "Files: ";
-    }
+    modi: "drun,run,window";
+    font: "GeistMono Nerd Font Mono 14";
     drun {
         display-name: "Applications: ";
     }
+    run {
+        display-name: "Run: ";
+    }
     window {
-        display-name: "Workspaces: ";
+        display-name: "Windows: ";
     }
 }
 

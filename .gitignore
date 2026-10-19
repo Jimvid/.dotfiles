@@ -3,8 +3,12 @@ node_modules/
 .config/github-copilot/
 .local/*
 !.local/bin/
-!.local/share/fonts
+!.local/share/
+.local/share/*
+!.local/share/fonts/
 .config/yarn/global/
 .config/herdr/herdr*.log
 .config/herdr/session.json
 .config/herdr/state.json
+**/.claude/settings.local.json
+.local/share/fonts/.uuid

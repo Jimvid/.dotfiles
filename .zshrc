@@ -12,6 +12,7 @@ plugins=(
     fzf-tab
     zsh-syntax-highlighting
     command-not-found
+    herdr
 )
 
 # General Aliases
@@ -32,8 +33,8 @@ eval "$(zoxide init zsh)"
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
-# source cargo
-[ -f ~/.cargo/env ] && source $HOME/.cargo/env
+# cargo-installed binaries
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 
 # zsh
 source $ZSH/oh-my-zsh.sh
@@ -43,17 +44,9 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Go
-export PATH=$PATH:/usr/local/go/bin
-
 # Flutter (via fvm; ~/fvm/default -> the active SDK)
-export PATH="$HOME/fvm/default/bin:$PATH"
+export PATH="$HOME/fvm/bin:$HOME/fvm/default/bin:$PATH"
 export CHROME_EXECUTABLE=$(which chromium)
-
-
-# Added by flyctl installer
-export FLYCTL_INSTALL="/home/jimvid/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # opencode
 export PATH=/home/jimvid/.opencode/bin:$PATH

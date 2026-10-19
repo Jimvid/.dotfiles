@@ -5,6 +5,6 @@
 [init]
 	defaultBranch = main
 [core]
-	excludesfile = home/jimvid/.gitignore
+	excludesfile = ~/.gitignore
 [includeIf "gitdir:~/dev/work/"]
     path = ~/dev/work/.gitconfig

@@ -1,6 +1,5 @@
 [
   {
-    // Move selected rows in visual ip or down
     "context": "Editor && vim_mode == visual",
     "bindings": {
       "shift-j": "editor::MoveLineDown",
@@ -8,7 +7,6 @@
     },
   },
   {
-    // Move from pane to åane
     "context": "Dock || Terminal || Editor",
     "bindings": {
       "ctrl-h": "workspace::ActivatePaneLeft",
@@ -18,7 +16,6 @@
     },
   },
   {
-    // File tree
     "context": "ProjectPanel && not_editing",
     "bindings": {
       "a": "project_panel::NewFile",
@@ -57,16 +54,13 @@
   {
     "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
-      // Refactoring
       "space c r ": "editor::Rename",
-      // AI
       "space f n": "agent::ToggleFocus",
       "ctrl-k": "workspace::ToggleRightDock",
       "cmd-k": "workspace::ToggleRightDock",
       "space a e": "assistant::InlineAssist",
       "cmd-l": "assistant::InlineAssist",
       "space a t": "workspace::ToggleRightDock",
-      // Git
       "space g g": [
         "task::Spawn",
         {
@@ -78,18 +72,12 @@
       "space g h D": "git::Diff",
       "space g h r": "git::Restore",
       "space g h R": "git::RestoreFile",
-      // Toggle inlay hints
       "space u i": "editor::ToggleInlayHints",
-      // Toggle soft wrap
       "space u w": "editor::ToggleSoftWrap",
-      // Open markdown preview
       "space m p": "markdown::OpenPreview",
       "space m P": "markdown::OpenPreviewToTheSide",
-      // Open recent project
       "space f p": "projects::OpenRecent",
-      // Search word under cursor in current pane
       "space F F": "buffer_search::Deploy",
-      // Tab things. Almost as good as harpoon.
       "space 1": ["pane::ActivateItem", 0],
       "space 2": ["pane::ActivateItem", 1],
       "space 3": ["pane::ActivateItem", 2],
@@ -113,42 +101,30 @@
       "ctrl-n": "pane::ActivateNextItem",
       "ctrl-p": "pane::ActivatePreviousItem",
       "space ,": "tab_switcher::Toggle",
-      // Jump to the previous location
       "space b b": "pane::AlternateFile",
-      // Close buffer
       "space b d": "pane::CloseActiveItem",
-      // Close inactive buffers
       "space b q": "pane::CloseOtherItems",
-      // Git
       "space g b": "git::Blame",
-      // Format
       "space c f": "editor::Format",
-      // File explorer
       "space e": "workspace::ToggleLeftDock",
       "-": "workspace::ToggleLeftDock",
-      // Telescope
       "space f f": "file_finder::Toggle",
       "space f g": "pane::DeploySearch",
-      // Terminal
       "space t": "workspace::ToggleBottomDock",
-      // Windows management
       "space w s": "pane::SplitDown",
       "space w v": "pane::SplitRight",
       "space -": "pane::SplitDown",
       "space |": "pane::SplitRight",
       "space w c": "pane::CloseAllItems",
       "space w d": "pane::CloseAllItems",
-      // Jump to hunks
       "] h": "editor::GoToHunk",
       "[ h": "editor::GoToPreviousHunk",
       "] c": "editor::GoToHunk",
       "[ c": "editor::GoToPreviousHunk",
-      // Jump to diagnostic
       "] d": "editor::GoToDiagnostic",
       "[ d": "editor::GoToPreviousDiagnostic",
       "] e": "editor::GoToDiagnostic",
       "[ e": "editor::GoToPreviousDiagnostic",
-      // Excerpts
       "] q": "editor::MoveToStartOfNextExcerpt",
       "[ q": "editor::MoveToStartOfExcerpt",
     },

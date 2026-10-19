@@ -1,16 +1,19 @@
 #!/bin/bash
+# Not in the Arch repos. Re-running never updates; use each tool's own updater.
 set -e
 
-sudo apt install tmux fzf ripgrep zoxide rofi kitty stow -y
+mkdir -p ~/.local/bin
+export PATH="$HOME/.local/bin:$PATH"   # installers below land here; arch does not add it by default
 
-# Download lazygit
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
-curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+# -> ~/.local/bin/herdr
+command -v herdr >/dev/null || curl -fsSL https://herdr.dev/install.sh | sh
 
-# Extract lazygit
-tar xf lazygit.tar.gz lazygit
+# -> ~/.local/bin/claude; the integration gives herdr the agent-state hook
+command -v claude >/dev/null || curl -fsSL https://claude.ai/install.sh | bash
+herdr integration status | grep -q '^claude: current' || herdr integration install claude
 
-# Install lazygit
-sudo install lazygit -D -t /usr/local/bin/
+# arch's rustup package ships without a default toolchain
+rustup show active-toolchain >/dev/null 2>&1 || rustup default stable
 
-rm lazygit.tar.gz lazygit
+# -> ~/fvm/bin; `fvm global` creates ~/fvm/default, which .zshrc puts on PATH
+[ -x ~/fvm/bin/fvm ] || curl -fsSL https://fvm.app/install.sh | bash

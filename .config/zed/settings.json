@@ -1,39 +1,26 @@
 {
-  "format_on_save": "on",
-  "lsp": {
-    "vtsls": {
-      "settings": {
-        "typescript": {
-          "updateImportsOnFileMove": {
-            "enabled": "always"
-          }
-        },
-        "javascript": {
-          "updateImportsOnFileMove": {
-            "enabled": "always"
-          }
-        }
-      },
-      "enable_lsp_tasks": true
+  "cli_default_open_behavior": "existing_window",
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
     }
   },
-  "disable_ai": true,
-  "cli_default_open_behavior": "existing_window",
-  "language_models": {
-    "bedrock": {
-      "authentication_method": "named_profile",
-      "region": "eu-west-1",
-      "profile": "bedrock",
-    },
-  },
   "project_panel": {
-    "dock": "left",
+    "hide_root": false,
+    "git_status_indicator": true,
+    "diagnostic_badges": true,
+    "indent_size": 20.0,
+    "file_icons": true,
+    "entry_spacing": "comfortable",
+    "dock": "left"
   },
-  "outline_panel": {
-    "dock": "left",
+  "active_pane_modifiers": {
+    "border_size": 0.0
   },
-  "git_panel": {
-    "dock": "left",
+  "title_bar": {
+    "show_user_picture": false,
+    "show_user_menu": false,
+    "show_sign_in": false
   },
   "agent": {
     "tool_permissions": {
@@ -53,10 +40,10 @@
     "model_parameters": [],
   },
   "cursor_shape": "block",
-  "ui_font_family": ".ZedSans",
+  "ui_font_family": "Geist",
   "buffer_line_height": "comfortable",
   "buffer_font_weight": 400.0,
-  "buffer_font_family": ".ZedMono",
+  "buffer_font_family": "GeistMono Nerd Font Mono",
   "terminal": {
     "dock": "bottom",
   },
@@ -80,6 +67,7 @@
     "dark": "Zed (Default)",
   },
   "tabs": {
+    "close_position": "right",
     "file_icons": true,
     "git_status": true,
   },

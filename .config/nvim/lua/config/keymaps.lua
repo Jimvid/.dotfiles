@@ -18,9 +18,10 @@ vim.keymap.set("v", "<leader>p", '"_dP')
 vim.keymap.set("n", "Q", "<nop>")
 
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessions.sh<CR>", { silent = true })
+vim.keymap.set("n", "<C-f>", function()
+  Snacks.terminal(vim.fn.expand("~/.local/bin/herdr-sessions.sh"), { win = { position = "float" } })
+end, { desc = "Open or create herdr workspace" })
 
--- Neotest Keymaps
 vim.keymap.set("n", "<leader>n", "", { desc = "🧪 Test" })
 vim.keymap.set("n", "<leader>nr", "<cmd>lua require('neotest').run.run()<cr>", { desc = "Run nearest test" })
 vim.keymap.set(
@@ -58,7 +59,6 @@ vim.keymap.set(
   { desc = "Run all tests with CI" }
 )
 
--- LSP Keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
   callback = function(event)

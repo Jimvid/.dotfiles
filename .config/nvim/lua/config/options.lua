@@ -10,7 +10,6 @@ vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.relativenumber = true
 
--- Tab configuration (4 spaces)
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4

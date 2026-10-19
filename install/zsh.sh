@@ -1,16 +1,13 @@
 #!/bin/bash
+# zsh itself comes from packages.sh
 set -e
 
-# Install zsh
-sudo apt install zsh -y
+[[ $SHELL == */zsh ]] || chsh -s "$(which zsh)"
 
-# Set zsh to defaut shell
-chsh -s $(which zsh)
+[ -d ~/.oh-my-zsh ] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
 
-# Install oh my zsh 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
-
-# Install oh my zsh plugins
-git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+clone() { [ -d "$ZSH_CUSTOM/plugins/$2" ] || git clone "$1" "$ZSH_CUSTOM/plugins/$2"; }
+clone https://github.com/Aloxaf/fzf-tab fzf-tab
+clone https://github.com/zsh-users/zsh-autosuggestions zsh-autosuggestions
+clone https://github.com/zsh-users/zsh-syntax-highlighting.git zsh-syntax-highlighting
