@@ -46,8 +46,8 @@ export NVM_DIR="$HOME/.config/nvm"
 # Go
 export PATH=$PATH:/usr/local/go/bin
 
-# Flutter
-export PATH="$HOME/dev/flutter/bin:$PATH"
+# Flutter (via fvm; ~/fvm/default -> the active SDK)
+export PATH="$HOME/fvm/default/bin:$PATH"
 export CHROME_EXECUTABLE=$(which chromium)
 
 
