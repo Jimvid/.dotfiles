@@ -17,6 +17,7 @@ links=(
     .config/hypr
     .config/kanshi
     .config/networkmanager-dmenu
+    .config/quickshell
     .config/nvim
     .config/rofi
     .config/waybar
