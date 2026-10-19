@@ -18,7 +18,7 @@ sudo pacman -S --needed --noconfirm \
     gst-plugin-pipewire sof-firmware \
     `# desktop (hyprland)` \
     hyprland hypridle hyprlock hyprpaper hyprpicker hyprpolkitagent sddm fprintd \
-    waybar rofi dunst libnotify kanshi playerctl \
+    waybar rofi dunst libnotify kanshi playerctl quickshell qt6-svg \
     xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xdg-utils xdg-user-dirs \
     qt5-wayland qt6-wayland qt6-virtualkeyboard \
     grim slurp wl-clipboard brightnessctl python-pillow \
