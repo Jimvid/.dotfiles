@@ -57,3 +57,21 @@ vim.keymap.set(
   "<cmd>lua require('neotest').run.run({ suite = true, env = { CI = true } })<cr>",
   { desc = "Run all tests with CI" }
 )
+
+-- LSP Keymaps
+vim.api.nvim_create_autocmd("LspAttach", {
+  desc = "LSP actions",
+  callback = function(event)
+    local opts = { buffer = event.buf }
+
+    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+    vim.keymap.set("n", "vd", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
+    vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+    vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+    vim.keymap.set("n", "vim", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+    vim.keymap.set("n", "vtd", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+    vim.keymap.set("n", "vrr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+    vim.keymap.set("n", "vrn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+    vim.keymap.set("n", "vca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  end,
+})
