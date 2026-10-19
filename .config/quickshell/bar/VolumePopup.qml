@@ -34,9 +34,27 @@ PopupWindow {
         return s.includes("hdmi") || s.includes("displayport") ? "monitor-speaker"
              : s.includes("headphone") || s.includes("headset") ? "headphones" : "speaker";
     }
-    function appName(node) { const p = node.properties ?? {}; return p["application.name"] || node.nickname || node.description || node.name; }
-    function mediaName(node) { const p = node.properties ?? {}; return p["media.name"] ?? ""; }
-    function appIcon(node) { const p = node.properties ?? {}; return Quickshell.iconPath(p["application.icon-name"] ?? "", true); }
+    // apps playing through the pipewire alsa plugin only identify themselves as "PipeWire ALSA [binary]"; dig the binary out
+    function appBinary(node) {
+        const p = node.properties ?? {};
+        const m = /^PipeWire ALSA \[(.+)\]$/.exec(p["application.name"] ?? "") ?? /^alsa_playback\.(.+)$/.exec(node.name ?? "");
+        return m ? m[1] : (p["application.process.binary"] ?? "");
+    }
+    function appName(node) {
+        const p = node.properties ?? {};
+        const bin = appBinary(node);
+        const raw = bin || p["application.name"] || node.nickname || node.description || node.name || "";
+        return raw === raw.toLowerCase() ? raw.charAt(0).toUpperCase() + raw.slice(1) : raw;   // "plexamp" -> "Plexamp"
+    }
+    function mediaName(node) {
+        const p = node.properties ?? {};
+        const m = p["media.name"] ?? "";
+        return m === "ALSA Playback" || m === "Playback" ? "" : m;   // generic alsa plugin titles carry no information
+    }
+    function appIcon(node) {
+        const p = node.properties ?? {};
+        return Quickshell.iconPath(p["application.icon-name"] || appBinary(node) || "", true);
+    }
 
     Rectangle {
         id: card
