@@ -6,7 +6,7 @@ set -e
 pacman -Qq docker-compose docker-buildx networkmanager_dmenu 2>/dev/null | xargs -r sudo pacman -Rns --noconfirm
 
 yay -S --needed --noconfirm \
-    slack-desktop-wayland \
+    slack-desktop \
     plexamp-appimage \
     google-chrome \
     docker-desktop \
