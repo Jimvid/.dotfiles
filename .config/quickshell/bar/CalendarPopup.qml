@@ -13,7 +13,7 @@ PopupWindow {
     anchor.item: target
     anchor.edges: Edges.Bottom
     anchor.gravity: Edges.Bottom
-    anchor.margins.top: 6
+    anchor.margins.bottom: -Theme.popupGap   // margins shrink the anchor rect; a negative bottom margin grows it downward, pushing the popup away
 
     color: "transparent"
     implicitWidth: card.implicitWidth
@@ -27,7 +27,7 @@ PopupWindow {
         radius: Theme.cardRadius
         color: Theme.surface
         border.width: 1
-        border.color: Theme.overlay
+        border.color: Theme.highlightHigh
         implicitWidth: col.implicitWidth + 24
         implicitHeight: col.implicitHeight + 24
 

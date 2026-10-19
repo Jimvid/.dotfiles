@@ -6,13 +6,16 @@ Item {
     id: root
     property string text: ""
     property string icon: ""
-    property color color: Theme.accent
+    property color color: Theme.fg
     property string tip: ""
     property int padding: Theme.pillPadding
     property int iconSize: 16
     property bool mono: true      // nerd-font glyphs need the mono font; numbers read better in it too
     signal clicked(var mouse)
     signal scrolled(int delta)
+
+    // every module lights up in the accent while hovered, like the tray icons
+    readonly property color shown: area.containsMouse ? Theme.accent : color
 
     implicitWidth: row.implicitWidth + 2 * padding
     implicitHeight: Theme.barHeight
@@ -28,14 +31,14 @@ Item {
             text: root.text
             font.family: root.mono ? Theme.mono : Theme.ui
             font.pixelSize: Theme.fontSize
-            color: root.color
+            color: root.shown
         }
         Icon {
             visible: root.icon !== ""
             anchors.verticalCenter: parent.verticalCenter
             name: root.icon
             size: root.iconSize
-            color: root.color
+            color: root.shown
         }
     }
 

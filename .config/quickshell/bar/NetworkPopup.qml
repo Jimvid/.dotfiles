@@ -15,7 +15,7 @@ PopupWindow {
     anchor.item: target
     anchor.edges: Edges.Bottom
     anchor.gravity: Edges.Bottom
-    anchor.margins.top: 6
+    anchor.margins.bottom: -Theme.popupGap   // margins shrink the anchor rect; a negative bottom margin grows it downward, pushing the popup away
 
     color: "transparent"
     implicitWidth: 300
@@ -36,7 +36,7 @@ PopupWindow {
         radius: Theme.cardRadius
         color: Theme.surface
         border.width: 1
-        border.color: Theme.overlay
+        border.color: Theme.highlightHigh
         implicitHeight: col.implicitHeight + 24
 
         ColumnLayout {
@@ -48,7 +48,7 @@ PopupWindow {
                 Layout.fillWidth: true
                 Text {
                     Layout.fillWidth: true
-                    text: "wi-fi"
+                    text: "Wi-Fi"
                     color: Theme.text; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize; font.bold: true
                 }
                 Toggle { on: Networking.wifiEnabled; onToggled: Networking.wifiEnabled = !Networking.wifiEnabled }
@@ -66,7 +66,7 @@ PopupWindow {
                         target: row.modelData
                         function onConnectionFailed(reason) {
                             if (reason === ConnectionFailReason.NoSecrets) { popup.pskFor = row.modelData; popup.error = ""; }
-                            else popup.error = "connection failed";
+                            else popup.error = "Connection failed";
                         }
                     }
 
@@ -75,7 +75,7 @@ PopupWindow {
                         Icon {
                             name: "wifi"; size: 14
                             opacity: 0.4 + 0.6 * row.modelData.signalStrength
-                            color: Theme.accent
+                            color: Theme.fg
                         }
                         Text {
                             Layout.fillWidth: true
@@ -103,11 +103,11 @@ PopupWindow {
                         visible: popup.pskFor === row.modelData
                         Layout.fillWidth: true
                         echoMode: TextInput.Password
-                        placeholderText: "passphrase"
+                        placeholderText: "Passphrase"
                         color: Theme.text
                         placeholderTextColor: Theme.muted
                         font.family: Theme.ui; font.pixelSize: Theme.uiFontSize
-                        background: Rectangle { radius: 6; color: Theme.base; border.width: 1; border.color: Theme.overlay }
+                        background: Rectangle { radius: Theme.fieldRadius; color: Theme.base; border.width: 1; border.color: Theme.highlightHigh }
                         onVisibleChanged: if (visible) forceActiveFocus()
                         onAccepted: { row.modelData.connectWithPsk(text); text = ""; popup.pskFor = null; }
                     }
@@ -121,7 +121,7 @@ PopupWindow {
             }
             Text {
                 visible: popup.networks.length === 0
-                text: Networking.wifiEnabled ? "scanning\u2026" : "wi-fi is off"
+                text: Networking.wifiEnabled ? "Scanning\u2026" : "Wi-Fi is off"
                 color: Theme.subtle; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize
             }
         }

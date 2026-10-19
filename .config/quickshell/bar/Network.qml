@@ -13,10 +13,10 @@ Glyph {
     property string ip: ""
 
     icon: !primary ? "wifi-off" : primary.type === DeviceType.Wifi ? "wifi" : "ethernet-port"
-    color: primary ? Theme.accent : Theme.subtle
-    tip: !primary ? "disconnected"
+    color: primary ? Theme.fg : Theme.subtle
+    tip: !primary ? "Disconnected"
        : primary.type === DeviceType.Wifi
-         ? (activeNetwork?.name ?? "wifi") + (activeNetwork ? " (" + Math.round(activeNetwork.signalStrength * 100) + "%)" : "") + (ip ? "  |  " + ip : "")
+         ? (activeNetwork?.name ?? "Wi-Fi") + (activeNetwork ? " (" + Math.round(activeNetwork.signalStrength * 100) + "%)" : "") + (ip ? "  |  " + ip : "")
          : primary.name + (ip ? "  |  " + ip : "")
 
     onClicked: popup.visible = !popup.visible

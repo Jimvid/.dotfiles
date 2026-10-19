@@ -14,7 +14,7 @@ PopupWindow {
     anchor.item: target
     anchor.edges: Edges.Bottom
     anchor.gravity: Edges.Bottom
-    anchor.margins.top: 6
+    anchor.margins.bottom: -Theme.popupGap   // margins shrink the anchor rect; a negative bottom margin grows it downward, pushing the popup away
 
     color: "transparent"
     implicitWidth: 280
@@ -30,7 +30,7 @@ PopupWindow {
         radius: Theme.cardRadius
         color: Theme.surface
         border.width: 1
-        border.color: Theme.overlay
+        border.color: Theme.highlightHigh
         implicitHeight: col.implicitHeight + 24
 
         ColumnLayout {
@@ -42,7 +42,7 @@ PopupWindow {
                 Layout.fillWidth: true
                 Text {
                     Layout.fillWidth: true
-                    text: popup.adapter ? popup.adapter.name : "no adapter"
+                    text: popup.adapter ? popup.adapter.name : "No adapter"
                     color: Theme.text; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize; font.bold: true
                 }
                 Toggle {
@@ -77,7 +77,7 @@ PopupWindow {
 
             Text {
                 visible: popup.devices.length === 0
-                text: "no paired devices"
+                text: "No paired devices"
                 color: Theme.subtle; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize
             }
         }

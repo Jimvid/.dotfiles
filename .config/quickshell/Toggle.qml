@@ -9,7 +9,7 @@ Rectangle {
     implicitWidth: 34
     implicitHeight: 18
     radius: height / 2
-    color: on ? Theme.accent : Theme.overlay
+    color: on ? Theme.accent : Theme.highlightMed
 
     Rectangle {
         width: 14; height: 14; radius: 7

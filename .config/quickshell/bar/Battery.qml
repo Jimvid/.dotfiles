@@ -21,8 +21,8 @@ Glyph {
     text: showTime ? fmt(charging ? dev.timeToFull : dev.timeToEmpty) : pct + "%"
     icon: charging ? "battery-charging" : critical ? "battery-warning"
         : pct > 80 ? "battery-full" : pct > 45 ? "battery-medium" : pct > 15 ? "battery-low" : "battery"
-    color: critical ? Theme.text : warning ? Theme.love : charging ? Theme.pine : Theme.accent
-    tip: charging ? (dev.state === UPowerDeviceState.FullyCharged ? "full" : fmt(dev.timeToFull) + " until full")
+    color: critical ? Theme.base : warning ? Theme.gold : charging ? Theme.pine : Theme.fg
+    tip: charging ? (dev.state === UPowerDeviceState.FullyCharged ? "Full" : fmt(dev.timeToFull) + " until full")
                   : fmt(dev.timeToEmpty) + " left"
     onClicked: showTime = !showTime
 

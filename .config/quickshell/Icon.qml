@@ -6,7 +6,7 @@ import qs
 Item {
     id: root
     required property string name
-    property color color: Theme.accent
+    property color color: Theme.fg
     property int size: 16
     implicitWidth: size
     implicitHeight: size

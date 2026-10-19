@@ -29,7 +29,7 @@ Row {
             readonly property bool active: root.monitor?.activeWorkspace?.id === modelData
             readonly property bool urgent: root.workspace(modelData)?.urgent ?? false
             text: active ? "" : ""
-            color: urgent ? Theme.love : active ? Theme.accentContrast : Theme.accent
+            color: urgent ? Theme.love : active ? Theme.accent : Theme.fg
             padding: 6
             onClicked: root.go(modelData)
             onScrolled: delta => {

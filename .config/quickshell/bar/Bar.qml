@@ -36,5 +36,6 @@ PanelWindow {
         Bluetooth {}
         Network {}
         Battery {}
+        Bell {}
     }
 }
