@@ -24,14 +24,16 @@ QtObject {
 
     readonly property string ui:   "Geist"
     readonly property string mono: "GeistMono Nerd Font Mono"
-    readonly property int fontSize:   14
+    readonly property int fontSize:   13  // bar text: clock, battery, media title; one below the bar icons
     readonly property int uiFontSize: 13
 
     readonly property int barHeight:  30
-    readonly property int barMargin:  4   // above and below the pills
-    readonly property int sideMargin: 8   // left and right of the outer pills
+    readonly property int barIconSize: 14 // icons in the bar modules; popups keep 16
+    readonly property int barMargin:  12  // screen edge to the pills; hyprland's gaps_out, so the pills line up with the windows
+    readonly property int sideMargin: 12  // left and right of the outer pills, same gap
     readonly property int pillRadius: 10  // same as cardRadius and hyprland rounding
-    readonly property int pillPadding: 8  // horizontal padding per module
+    readonly property int pillPadding: 7  // horizontal padding per module: 14 between icons
+    readonly property int pillInset: 9    // extra at both ends of a pill: with the module padding, 16 from the pill edge to the first icon
     readonly property int cardRadius: 10  // matches hyprland decoration.rounding
     readonly property int fieldRadius: 6  // inputs nested inside a card
     readonly property int popupGap: 6    // distance between a bar item and its tooltip / popup / tray menu

@@ -84,6 +84,23 @@ PopupWindow {
                     }
                 }
             }
+
+            Rectangle { Layout.fillWidth: true; Layout.topMargin: 4; Layout.bottomMargin: 4; implicitHeight: 1; color: Theme.highlightMed }
+
+            // night light: hyprsunset's blue light filter
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.leftMargin: 10; Layout.rightMargin: 10
+                spacing: 8
+                Icon { name: "moon"; size: 14; color: NightLight.on ? Theme.accent : Theme.subtle }
+                Text {
+                    Layout.fillWidth: true
+                    text: "Night light"
+                    color: NightLight.on ? Theme.text : Theme.subtle
+                    font.family: Theme.ui; font.pixelSize: Theme.uiFontSize
+                }
+                Toggle { on: NightLight.on; onToggled: NightLight.toggle() }
+            }
         }
     }
 }

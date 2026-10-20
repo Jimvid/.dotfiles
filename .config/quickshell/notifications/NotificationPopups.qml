@@ -14,7 +14,7 @@ Variants {
         id: win
         required property var modelData
         screen: modelData
-        readonly property bool focused: (Hyprland.focusedMonitor?.name ?? Quickshell.screens[0]?.name) === screen.name
+        readonly property bool focused: (Hyprland.focusedMonitor?.name ?? Quickshell.screens[0]?.name) === modelData.name   // modelData, not screen: the window's screen gets reassigned while a monitor goes away
         visible: focused
 
         WlrLayershell.layer: WlrLayer.Overlay
@@ -22,7 +22,7 @@ Variants {
         exclusionMode: ExclusionMode.Normal
         exclusiveZone: 0
         anchors { top: true; bottom: true; right: true }
-        margins { top: Theme.popupGap - Theme.barMargin; right: Theme.sideMargin }
+        margins { top: Theme.popupGap; right: Theme.sideMargin }
         implicitWidth: 360
         color: "transparent"
         mask: Region { item: stack }

@@ -1,7 +1,16 @@
 [user]
 	name = Jimvid
-	mail = victor@jimvid.com
 	email = victor@jimvid.com
+	signingkey = ~/.ssh/id_ed25519.pub
+# commits are signed with the ssh key; add the same public key on github as a "signing key" so they show as verified
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
 [init]
 	defaultBranch = main
 [core]

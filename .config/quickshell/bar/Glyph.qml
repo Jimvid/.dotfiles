@@ -9,7 +9,8 @@ Item {
     property color color: Theme.fg
     property string tip: ""
     property int padding: Theme.pillPadding
-    property int iconSize: 16
+    property int iconSize: Theme.barIconSize
+    property int fontSize: Theme.fontSize
     property bool mono: true      // nerd-font glyphs need the mono font; numbers read better in it too
     signal clicked(var mouse)
     signal scrolled(int delta)
@@ -30,7 +31,7 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             text: root.text
             font.family: root.mono ? Theme.mono : Theme.ui
-            font.pixelSize: Theme.fontSize
+            font.pixelSize: root.fontSize
             color: root.shown
         }
         Icon {

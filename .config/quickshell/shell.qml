@@ -1,6 +1,9 @@
 import Quickshell
 import qs.bar
 import qs.notifications
+import qs.polkit
+import qs.osd
+import qs.power
 
 ShellRoot {
     Variants {
@@ -8,4 +11,7 @@ ShellRoot {
         delegate: Bar {}
     }
     NotificationPopups {}
+    PolkitPrompt {}
+    Osd {}
+    PowerMenu {}
 }

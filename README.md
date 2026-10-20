@@ -17,7 +17,9 @@ Refresh it with `tar -C ~/.ssh -cf - id_ed25519 id_ed25519.pub | age -p -o /mnt/
 
 `install.sh` runs the scripts in `install/` in order (packages, yay, AUR, services,
 symlinks, desktop settings, tools, zsh, node). Every step is idempotent, so both
-`install.sh` and `symlink.sh` can be re-run at any time.
+`install.sh` and `symlink.sh` can be re-run at any time. `install.sh --skip-docker-desktop`
+installs plain docker with the compose and buildx plugins instead of Docker Desktop;
+re-running with or without the flag switches between the two.
 
 `symlink.sh` links each entry in its `links` array into `$HOME`. Anything already
 there that is not a symlink is moved aside as `*.bak`, never overwritten.

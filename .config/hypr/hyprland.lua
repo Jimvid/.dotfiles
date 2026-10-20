@@ -8,11 +8,13 @@ local browser     = "firefox"
 local mainMod     = "SUPER"
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("systemctl --user start hyprpolkitagent")
     hl.exec_cmd("qs")
     hl.exec_cmd("hyprpaper")
+    hl.exec_cmd("hyprsunset")   -- blue light filter daemon; the quickshell night light toggle talks to it over hyprctl
     hl.exec_cmd("hypridle")
     hl.exec_cmd("kanshi")
+    hl.exec_cmd("wl-paste --type text --watch cliphist store")    -- clipboard history, super+c to pick
+    hl.exec_cmd("wl-paste --type image --watch cliphist store")
     hl.exec_cmd("1password --silent")
 end)
 
@@ -23,7 +25,7 @@ hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")   -- electron apps (slack, 1passw
 hl.config({
     general = {
         gaps_in     = 5,
-        gaps_out    = 13,
+        gaps_out    = 12,   -- matches barMargin / sideMargin in quickshell's Theme.qml
         border_size = 1,
         col = {
             active_border   = "rgba(aa8df2aa)",
@@ -105,12 +107,19 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+-- lid: closing it with another monitor active turns the panel off and the session carries on (logind treats a second
+-- display as docked and ignores the lid; alone, it suspends and hypridle locks first). opening the lid lets kanshi
+-- put the outputs back the way its profile says
+hl.bind("switch:on:Lid Switch",  hl.dsp.exec_cmd("[ \"$(hyprctl monitors -j | jq '[.[] | select(.name != \"eDP-1\")] | length')\" -gt 0 ] && hyprctl eval 'hl.monitor({ output = \"eDP-1\", disabled = true })'"), { locked = true })
+hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd("kanshictl reload"), { locked = true })
+
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -p clip | cliphist decode | wl-copy"))
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd('grim -g "$(slurp)" ~/screenshots/screenshot_$(date +%Y%m%d_%H%M%S).png'))
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("hyprpicker -a -l"))
 
 -- windows
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("qs ipc call power toggle"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
@@ -129,18 +138,25 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- media keys
-hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
-hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && qs ipc call osd volume"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && qs ipc call osd volume"),      { locked = true, repeating = true })
+hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && qs ipc call osd volume"),     { locked = true, repeating = true })
+hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && qs ipc call osd mic"),   { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+ && qs ipc call osd brightness"),                  { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%- && qs ipc call osd brightness"),                  { locked = true, repeating = true })
 
 -- needs playerctl
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
+
+-- blur the whole screen behind the quickshell polkit prompt and power menu
+hl.layer_rule({
+    name  = "blur-polkit",
+    match = { namespace = "^qs-(polkit|power)$" },
+    blur  = true,
+})
 
 hl.window_rule({
     name  = "suppress-maximize-events",

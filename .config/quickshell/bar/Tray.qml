@@ -24,7 +24,7 @@ Row {
         delegate: Item {
             id: entry
             required property SystemTrayItem modelData
-            implicitWidth: 16 + 2 * Theme.pillPadding
+            implicitWidth: Theme.barIconSize + 2 * Theme.pillPadding
             implicitHeight: Theme.barHeight
 
             readonly property string lucide: tray.lucideFor(modelData)
@@ -34,7 +34,7 @@ Row {
                 visible: entry.lucide !== ""
                 anchors.centerIn: parent
                 name: entry.lucide
-                size: 16
+                size: Theme.barIconSize
                 color: entry.tint
             }
 
@@ -43,7 +43,7 @@ Row {
                 id: raw
                 visible: false
                 anchors.centerIn: parent
-                implicitSize: 16
+                implicitSize: Theme.barIconSize
                 source: entry.modelData.icon
             }
             MultiEffect {
@@ -69,14 +69,7 @@ Row {
                 onWheel: wheel => entry.modelData.scroll(wheel.angleDelta.y / 120, false)
             }
 
-            QsMenuAnchor {
-                id: menu
-                menu: entry.modelData.menu
-                anchor.item: entry
-                anchor.edges: Edges.Bottom
-                anchor.gravity: Edges.Bottom
-                anchor.margins.bottom: -Theme.popupGap   // margins shrink the anchor rect; a negative bottom margin grows it downward, pushing the popup away
-            }
+            TrayMenu { id: menu; target: entry; handle: entry.modelData.menu }
 
             Tooltip {
                 target: entry

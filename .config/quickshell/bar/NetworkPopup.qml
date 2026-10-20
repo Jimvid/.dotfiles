@@ -30,6 +30,7 @@ PopupWindow {
     property var pskFor: null   // network waiting for a passphrase
     property string error: ""
 
+
     Rectangle {
         id: card
         width: parent.width
@@ -53,6 +54,8 @@ PopupWindow {
                 }
                 Toggle { on: Networking.wifiEnabled; onToggled: Networking.wifiEnabled = !Networking.wifiEnabled }
             }
+
+            Rectangle { Layout.fillWidth: true; Layout.topMargin: 4; Layout.bottomMargin: 4; implicitHeight: 1; color: Theme.highlightMed }
 
             Repeater {
                 model: popup.networks

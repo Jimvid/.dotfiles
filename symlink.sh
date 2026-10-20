@@ -9,7 +9,6 @@ links=(
     .zshrc
     .gitconfig
     .gitignore
-    .config/dunst
     .config/fontconfig
     .config/gtk-3.0/settings.ini
     .config/gtk-4.0/settings.ini

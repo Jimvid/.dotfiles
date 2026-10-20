@@ -3,3 +3,7 @@ Icon 1.0 Icon.qml
 Toggle 1.0 Toggle.qml
 Tooltip 1.0 Tooltip.qml
 singleton Notifs 1.0 Notifs.qml
+singleton Players 1.0 Players.qml
+singleton Caffeine 1.0 Caffeine.qml
+singleton NightLight 1.0 NightLight.qml
+singleton Backlight 1.0 Backlight.qml

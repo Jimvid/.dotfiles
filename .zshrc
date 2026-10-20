@@ -19,9 +19,11 @@ plugins=(
 alias vim="nvim"
 alias lg="lazygit"
 alias ff='vim $(rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,.git}" | fzf)'
-alias fd='cd $(find . -type d \( -name node_modules -o -name .git \) -prune -o -name "*" | fzf)'
 
 #FZF
+export EDITOR=nvim
+export VISUAL=nvim
+
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
 export FZF_DEFAULT_OPTS='--reverse --preview "cat {}"'
 

@@ -23,8 +23,12 @@ PopupWindow {
     readonly property PwNode sink: Pipewire.defaultAudioSink
     readonly property var sinks: Pipewire.nodes.values.filter(n => n.isSink && !n.isStream && n.audio !== null)
     readonly property var streams: Pipewire.nodes.values.filter(n => n.isStream && n.isSink && n.audio !== null)   // playback streams are flagged isSink: they accept the app's audio
-    PwObjectTracker { objects: popup.sinks.concat(popup.streams) }
+    readonly property PwNode source: Pipewire.defaultAudioSource
+    readonly property var sources: Pipewire.nodes.values.filter(n => !n.isSink && !n.isStream && n.audio !== null && !(n.name ?? "").endsWith(".monitor"))
+    readonly property var captures: Pipewire.nodes.values.filter(n => n.isStream && !n.isSink && n.audio !== null)   // apps recording
+    PwObjectTracker { objects: popup.sinks.concat(popup.streams, popup.sources, popup.captures) }
     property bool showDevices: false
+    property bool showInputs: false
 
     // node.nick is the short human name ("Speaker", "HDMI 1"); the description is the full chipset mouthful
     function deviceName(node) { return node?.nickname || node?.description || "No output"; }
@@ -138,7 +142,85 @@ PopupWindow {
                 }
             }
 
-            Rectangle { Layout.fillWidth: true; implicitHeight: 1; color: Theme.highlightMed }
+            Rectangle { Layout.fillWidth: true; Layout.topMargin: 4; Layout.bottomMargin: 4; implicitHeight: 1; color: Theme.highlightMed }
+
+            // input: device name (click to pick another microphone), mute, percentage, slider
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+                Icon { name: popup.source?.audio?.muted ? "mic-off" : "mic"; size: 16; color: popup.source?.audio?.muted ? Theme.subtle : Theme.fg }
+                Text {
+                    Layout.fillWidth: true
+                    text: popup.source ? popup.deviceName(popup.source) : "No input"
+                    elide: Text.ElideRight
+                    color: Theme.text; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize; font.bold: true
+                    MouseArea { anchors.fill: parent; enabled: popup.sources.length > 1; onClicked: popup.showInputs = !popup.showInputs }
+                }
+                Icon {
+                    visible: popup.sources.length > 1
+                    name: popup.showInputs ? "chevron-up" : "chevron-down"; size: 14; color: Theme.subtle
+                    MouseArea { anchors.fill: parent; onClicked: popup.showInputs = !popup.showInputs }
+                }
+                Text {
+                    text: popup.pct(popup.source)
+                    color: Theme.subtle; font.family: Theme.mono; font.pixelSize: Theme.uiFontSize
+                }
+                MuteButton { node: popup.source; onIcon: "mic"; offIcon: "mic-off" }
+            }
+            VolumeSlider {
+                Layout.fillWidth: true
+                value: popup.source?.audio?.volume ?? 0
+                active: !(popup.source?.audio?.muted ?? false)
+                onMoved: v => { if (popup.source?.audio) popup.source.audio.volume = v; }
+            }
+            Text {
+                visible: popup.captures.length > 0
+                Layout.leftMargin: 24
+                text: "In use by " + popup.captures.map(n => popup.appName(n)).filter((v, i, a) => a.indexOf(v) === i).join(", ")
+                elide: Text.ElideRight
+                Layout.fillWidth: true
+                color: Theme.subtle; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize - 2
+            }
+
+            // input picker, folded away unless there is a choice
+            ColumnLayout {
+                visible: popup.showInputs && popup.sources.length > 1
+                Layout.fillWidth: true
+                spacing: 2
+                Repeater {
+                    model: popup.sources
+                    delegate: Rectangle {
+                        id: srcRow
+                        required property PwNode modelData
+                        readonly property bool active: modelData === popup.source
+                        Layout.fillWidth: true
+                        implicitHeight: 28
+                        radius: Theme.fieldRadius
+                        color: active ? Theme.highlightMed : srcHover.containsMouse ? Theme.highlightLow : "transparent"
+                        RowLayout {
+                            anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
+                            spacing: 8
+                            Icon { name: "mic"; size: 14; color: srcRow.active ? Theme.accent : Theme.subtle }
+                            Text {
+                                Layout.fillWidth: true
+                                text: popup.deviceName(srcRow.modelData)
+                                elide: Text.ElideRight
+                                color: srcRow.active ? Theme.text : Theme.subtle
+                                font.family: Theme.ui; font.pixelSize: Theme.uiFontSize
+                            }
+                            Icon { visible: srcRow.active; name: "check"; size: 14; color: Theme.accent }
+                        }
+                        MouseArea {
+                            id: srcHover
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onClicked: { Pipewire.preferredDefaultAudioSource = srcRow.modelData; popup.showInputs = false; }
+                        }
+                    }
+                }
+            }
+
+            Rectangle { Layout.fillWidth: true; Layout.topMargin: 4; Layout.bottomMargin: 4; implicitHeight: 1; color: Theme.highlightMed }
 
             // one block per app with an output stream
             Repeater {
@@ -210,11 +292,13 @@ PopupWindow {
 
     component MuteButton: Item {
         property PwNode node
+        property string onIcon: "volume-2"
+        property string offIcon: "volume-x"
         readonly property bool muted: node?.audio?.muted ?? false
         implicitWidth: 20; implicitHeight: 20
         Icon {
             anchors.centerIn: parent
-            name: parent.muted ? "volume-x" : "volume-2"
+            name: parent.muted ? parent.offIcon : parent.onIcon
             size: 14
             color: parent.muted ? Theme.love : muteHover.containsMouse ? Theme.text : Theme.subtle
         }

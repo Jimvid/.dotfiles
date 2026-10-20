@@ -1,5 +1,9 @@
-profile laptop {
-    output eDP-1 enable scale 1.00 position 0,0
+# kanshi applies the first profile whose outputs match what is connected; docked profiles first so they win over laptop.
+# external monitors are matched by their description, which stays the same whatever port they are on
+
+profile docked-lg {
+    output eDP-1 disable
+    output "LG Electronics LG ULTRAGEAR 311NTZN69469" enable mode 3840x2160@60Hz scale 1.5 position 0,0
 }
 
 profile docked {
@@ -7,7 +11,6 @@ profile docked {
     output DP-2 enable scale 1.2500 position 0,0
 }
 
-profile undocked {
+profile laptop {
     output eDP-1 enable scale 1.00 position 0,0
-    output DP-2 disable
 }

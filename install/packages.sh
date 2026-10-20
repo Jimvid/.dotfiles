@@ -17,11 +17,11 @@ sudo pacman -S --needed --noconfirm \
     pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber libpulse \
     gst-plugin-pipewire sof-firmware \
     `# desktop (hyprland)` \
-    hyprland hypridle hyprlock hyprpaper hyprpicker hyprpolkitagent sddm fprintd \
-    rofi dunst libnotify kanshi playerctl quickshell qt6-svg \
+    hyprland hypridle hyprlock hyprpaper hyprpicker hyprsunset sddm fprintd \
+    rofi libnotify kanshi playerctl quickshell qt6-svg \
     xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xdg-utils xdg-user-dirs \
     qt5-wayland qt6-wayland qt6-virtualkeyboard \
-    grim slurp wl-clipboard brightnessctl python-pillow \
+    grim slurp wl-clipboard cliphist brightnessctl python-pillow \
     thunar thunar-volman gvfs adwaita-icon-theme \
     noto-fonts noto-fonts-emoji gsettings-desktop-schemas \
     `# terminal and shell` \
