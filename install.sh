@@ -21,6 +21,7 @@ step packages.sh
 step yay.sh
 step aur.sh
 step services.sh
+step wwan.sh
 
 mkdir -p ~/dev/work ~/dev/personal ~/screenshots
 ./symlink.sh
