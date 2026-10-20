@@ -20,4 +20,5 @@ yay -S --needed --noconfirm \
     google-chrome \
     "${docker_desktop[@]}" \
     1password \
-    sddm-astronaut-theme
+    sddm-astronaut-theme \
+    ripdrag

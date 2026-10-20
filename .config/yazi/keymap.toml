@@ -1,0 +1,5 @@
+# ripdrag opens a small window to drag the selection into a gui app
+[[mgr.prepend_keymap]]
+on   = "<C-n>"
+run  = 'shell -- ripdrag -x "$@"'
+desc = "Drag selected files"

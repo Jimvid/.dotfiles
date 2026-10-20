@@ -2,9 +2,9 @@
 -- https://wiki.hypr.land/Configuring/
 
 local terminal    = "ghostty"
-local fileManager = "thunar"
+local fileManager = "ghostty -e yazi"
 local menu        = "rofi -show drun"
-local browser     = "firefox"
+local browser     = "chromium"
 local mainMod     = "SUPER"
 
 hl.on("hyprland.start", function()
@@ -15,6 +15,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("kanshi")
     hl.exec_cmd("wl-paste --type text --watch cliphist store")    -- clipboard history, super+c to pick
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
+    hl.exec_cmd("udiskie --no-tray")   -- automount removable drives; udiskie-umount -a to eject
     hl.exec_cmd("1password --silent")
 end)
 

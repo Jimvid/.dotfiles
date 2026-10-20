@@ -22,7 +22,9 @@ sudo pacman -S --needed --noconfirm \
     xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xdg-utils xdg-user-dirs \
     qt5-wayland qt6-wayland qt6-virtualkeyboard \
     grim slurp wl-clipboard cliphist brightnessctl python-pillow \
-    thunar thunar-volman gvfs adwaita-icon-theme \
+    adwaita-icon-theme \
+    `# files: yazi in ghostty, udiskie mounts removable drives, previews via poppler/ffmpegthumbnailer/7zip` \
+    yazi udiskie ouch 7zip poppler ffmpegthumbnailer imagemagick imv mpv qalculate-gtk \
     noto-fonts noto-fonts-emoji gsettings-desktop-schemas \
     `# terminal and shell` \
     ghostty zsh neovim vim nano \
@@ -32,4 +34,4 @@ sudo pacman -S --needed --noconfirm \
     `# flutter (fvm installs the sdk, see tools.sh)` \
     clang cmake ninja pkgconf gtk3 glu xz zip chromium \
     `# apps` \
-    firefox zed gimp
+    zed gimp

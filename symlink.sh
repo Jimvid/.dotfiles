@@ -16,6 +16,8 @@ links=(
     .config/hypr
     .config/kanshi
     .config/quickshell
+    .config/yazi
+    .config/mimeapps.list
     .config/nvim
     .config/rofi
     .config/zed
