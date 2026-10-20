@@ -3,4 +3,5 @@ font-synthetic-style = false
 window-padding-x = 16
 window-padding-y = 16
 cursor-style = block
+shell-integration-features = no-cursor   # keep the block at the prompt too
 theme = Rose Pine
