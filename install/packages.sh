@@ -7,7 +7,7 @@ pacman -Qq uwsm waybar 2>/dev/null | xargs -r sudo pacman -Rns --noconfirm
 sudo pacman -S --needed --noconfirm \
     `# base system` \
     base base-devel linux linux-firmware amd-ucode efibootmgr \
-    btrfs-progs snapper zram-generator smartmontools \
+    btrfs-progs snapper zram-generator smartmontools pciutils \
     networkmanager iwd modemmanager wireless_tools bluez bluez-utils \
     power-profiles-daemon powertop \
     `# graphics` \
