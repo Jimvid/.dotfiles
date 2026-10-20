@@ -115,7 +115,7 @@ hl.bind("switch:on:Lid Switch",  hl.dsp.exec_cmd("[ \"$(hyprctl monitors -j | jq
 hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd("kanshictl reload"), { locked = true })
 
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -p clip | cliphist decode | wl-copy"))
-hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd('grim -g "$(slurp)" ~/screenshots/screenshot_$(date +%Y%m%d_%H%M%S).png'))
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.local/bin/screenshot.sh"))   -- area to ~/screenshots, clipboard and a notification; hyprland's PATH has no ~/.local/bin
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("hyprpicker -a -l"))
 
 -- windows

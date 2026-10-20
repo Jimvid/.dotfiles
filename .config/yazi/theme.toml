@@ -74,7 +74,7 @@ rules = [
     { mime = "{audio,video}/*", fg = "#c4a7e7" },
     { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,debian*-package,ms-cab*}", fg = "#eb6f92" },
     { mime = "application/{pdf,doc,rtf}", fg = "#31748f" },
-    { name = "*", is = "orphan", fg = "#eb6f92" },
-    { name = "*", is = "exec", fg = "#31748f" },
-    { name = "*/", fg = "#9ccfd8" },
+    { url = "*", is = "orphan", fg = "#eb6f92" },
+    { url = "*", is = "exec", fg = "#31748f" },
+    { url = "*/", fg = "#9ccfd8" },
 ]
