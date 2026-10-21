@@ -8,7 +8,7 @@ sudo pacman -S --needed --noconfirm \
     `# base system` \
     base base-devel linux linux-firmware amd-ucode efibootmgr \
     btrfs-progs snapper zram-generator smartmontools pciutils \
-    networkmanager iwd modemmanager wireless_tools bluez bluez-utils \
+    networkmanager iwd modemmanager wireguard-tools wireless_tools bluez bluez-utils \
     power-profiles-daemon powertop \
     `# graphics` \
     intel-media-driver libva-intel-driver vulkan-intel vulkan-radeon vulkan-nouveau \

@@ -8,3 +8,4 @@ singleton Caffeine 1.0 Caffeine.qml
 singleton NightLight 1.0 NightLight.qml
 singleton Backlight 1.0 Backlight.qml
 singleton Modem 1.0 Modem.qml
+singleton Wireguard 1.0 Wireguard.qml

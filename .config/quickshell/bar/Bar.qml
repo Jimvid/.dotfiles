@@ -40,6 +40,7 @@ PanelWindow {
         PowerProfile {}
         Bluetooth {}
         Network {}
+        Vpn {}
         Battery {}
         Bell {}
     }

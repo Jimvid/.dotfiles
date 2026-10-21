@@ -22,6 +22,7 @@ step yay.sh
 step aur.sh
 step services.sh
 step wwan.sh
+step vpn.sh
 
 mkdir -p ~/dev/work ~/dev/personal ~/screenshots
 ./symlink.sh
