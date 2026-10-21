@@ -71,7 +71,7 @@ PopupWindow {
 
         ColumnLayout {
             id: col
-            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
+            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 16 }
             spacing: 8
 
             // master: device name (click to pick another output), mute, percentage, slider
@@ -116,6 +116,8 @@ PopupWindow {
                         required property PwNode modelData
                         readonly property bool active: modelData === popup.sink
                         Layout.fillWidth: true
+                        // the hover background bleeds into the card margin, so the text keeps the card's left edge
+                        Layout.leftMargin: -8; Layout.rightMargin: -8
                         implicitHeight: 28
                         radius: Theme.cardRadius
                         color: active ? Theme.highlightMed : devHover.containsMouse ? Theme.hover : "transparent"
@@ -194,6 +196,8 @@ PopupWindow {
                         required property PwNode modelData
                         readonly property bool active: modelData === popup.source
                         Layout.fillWidth: true
+                        // the hover background bleeds into the card margin, so the text keeps the card's left edge
+                        Layout.leftMargin: -8; Layout.rightMargin: -8
                         implicitHeight: 28
                         radius: Theme.cardRadius
                         color: active ? Theme.highlightMed : srcHover.containsMouse ? Theme.hover : "transparent"

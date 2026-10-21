@@ -41,7 +41,7 @@ PopupWindow {
 
         ColumnLayout {
             id: col
-            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
+            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 16 }
             spacing: 8
 
             // header: adapter, state, power
@@ -102,12 +102,14 @@ PopupWindow {
                 Rectangle {
                     id: scanRow
                     Layout.fillWidth: true
+                    // the hover background bleeds into the card margin, so the text keeps the card's left edge
+                    Layout.leftMargin: -8; Layout.rightMargin: -8
                     implicitHeight: 30
                     radius: Theme.cardRadius
                     color: scanHover.containsMouse ? Theme.hover : "transparent"
                     readonly property bool scanning: popup.adapter?.discovering ?? false
                     RowLayout {
-                        anchors { fill: parent; leftMargin: 10; rightMargin: 10 }
+                        anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
                         spacing: 8
                         Icon {
                             id: scanIcon

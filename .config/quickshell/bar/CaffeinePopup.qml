@@ -32,7 +32,7 @@ PopupWindow {
 
         ColumnLayout {
             id: col
-            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
+            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 16 }
             spacing: 8
 
             RowLayout {
@@ -61,6 +61,8 @@ PopupWindow {
                     required property var modelData
                     readonly property bool selected: Caffeine.active && Caffeine.minutes === modelData.minutes
                     Layout.fillWidth: true
+                    // the hover background bleeds into the card margin, so the text keeps the card's left edge
+                    Layout.leftMargin: -8; Layout.rightMargin: -8
                     implicitHeight: 28
                     radius: Theme.cardRadius
                     color: selected ? Theme.highlightMed : hover.containsMouse ? Theme.hover : "transparent"

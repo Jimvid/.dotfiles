@@ -37,7 +37,7 @@ PopupWindow {
 
         ColumnLayout {
             id: col
-            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
+            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 16 }
             spacing: 8
 
             Text {
@@ -53,6 +53,8 @@ PopupWindow {
                     id: row
                     required property var modelData
                     Layout.fillWidth: true
+                    // the hover background bleeds into the card margin, so the text keeps the card's left edge
+                    Layout.leftMargin: -8; Layout.rightMargin: -8
                     implicitHeight: content.implicitHeight + 12
 
                     // hover row, inset from the card edge
@@ -63,7 +65,7 @@ PopupWindow {
                     }
                     RowLayout {
                         id: content
-                        anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: 10; rightMargin: 10 }
+                        anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: 8; rightMargin: 8 }
                         spacing: 10
 
                         ColumnLayout {

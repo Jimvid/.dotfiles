@@ -28,13 +28,17 @@ Rectangle {
                                  : ""
 
     Layout.fillWidth: true
+
+    // the hover background bleeds into the card margin, so the text keeps the card's left edge
+
+    Layout.leftMargin: -8; Layout.rightMargin: -8
     implicitHeight: 30
     // hover row, inset from the card edge
     radius: Theme.cardRadius
     color: hover.containsMouse ? Theme.hover : "transparent"
 
     RowLayout {
-        anchors { fill: parent; leftMargin: 10; rightMargin: 10 }
+        anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
         spacing: 8
         Icon { name: row.deviceIcon(row.device); size: 14; color: row.device.connected ? Theme.accent : Theme.subtle }
         Text {

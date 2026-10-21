@@ -41,7 +41,7 @@ PopupWindow {
 
         ColumnLayout {
             id: col
-            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
+            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 16 }
             spacing: 10
 
             // player picker
