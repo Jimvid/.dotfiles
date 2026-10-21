@@ -91,32 +91,47 @@ PopupWindow {
                         }
                     }
 
-                    RowLayout {
+                    Item {
                         Layout.fillWidth: true
-                        Icon {
-                            name: "wifi"; size: 14
-                            opacity: 0.4 + 0.6 * row.modelData.signalStrength
-                            color: Theme.fg
+                        implicitHeight: line.implicitHeight + 12
+
+                        // hover row, inset from the card edge
+                        Rectangle {
+                            anchors.fill: parent
+                            radius: Theme.cardRadius
+                            color: area.containsMouse ? Theme.hover : "transparent"
                         }
-                        Text {
-                            Layout.fillWidth: true
-                            text: row.modelData.name
-                            elide: Text.ElideRight
-                            color: row.modelData.connected ? Theme.text : Theme.subtle
-                            font.family: Theme.ui; font.pixelSize: Theme.uiFontSize; font.bold: row.modelData.connected
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    popup.error = "";
-                                    if (row.modelData.connected) row.modelData.disconnect();
-                                    else if (!row.modelData.known && row.modelData.security !== WifiSecurityType.Open) popup.pskFor = row.modelData;
-                                    else { popup.pskFor = null; row.modelData.connect(); }
-                                }
+                        RowLayout {
+                            id: line
+                            anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: 10; rightMargin: 10 }
+                            Icon {
+                                name: "wifi"; size: 14
+                                opacity: 0.4 + 0.6 * row.modelData.signalStrength
+                                color: Theme.fg
+                            }
+                            Text {
+                                Layout.fillWidth: true
+                                text: row.modelData.name
+                                elide: Text.ElideRight
+                                color: row.modelData.connected ? Theme.accent : Theme.text
+                                font.family: Theme.ui; font.pixelSize: Theme.uiFontSize; font.bold: row.modelData.connected
+                            }
+                            Icon {
+                                visible: row.modelData.security !== WifiSecurityType.Open
+                                name: "lock"; size: 12; color: Theme.subtle
                             }
                         }
-                        Icon {
-                            visible: row.modelData.security !== WifiSecurityType.Open
-                            name: "lock"; size: 12; color: Theme.subtle
+                        MouseArea {
+                            id: area
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                popup.error = "";
+                                if (row.modelData.connected) row.modelData.disconnect();
+                                else if (!row.modelData.known && row.modelData.security !== WifiSecurityType.Open) popup.pskFor = row.modelData;
+                                else { popup.pskFor = null; row.modelData.connect(); }
+                            }
                         }
                     }
 

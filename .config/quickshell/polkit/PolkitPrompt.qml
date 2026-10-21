@@ -108,7 +108,7 @@ Scope {
                                 implicitWidth: chipLabel.implicitWidth + 20
                                 implicitHeight: 24
                                 radius: Theme.fieldRadius
-                                color: selected && pickable ? Theme.highlightMed : chipHover.containsMouse && pickable ? Theme.highlightLow : "transparent"
+                                color: selected && pickable ? Theme.highlightMed : chipHover.containsMouse && pickable ? Theme.hover : "transparent"
                                 Text {
                                     id: chipLabel
                                     anchors.centerIn: parent

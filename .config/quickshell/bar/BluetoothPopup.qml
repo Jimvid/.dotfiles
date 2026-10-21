@@ -59,10 +59,6 @@ PopupWindow {
                     elide: Text.ElideRight
                     color: Theme.text; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize; font.bold: true
                 }
-                Text {
-                    text: !popup.adapter ? "" : !popup.on ? "off" : popup.connectedCount === 0 ? "on" : popup.connectedCount + " connected"
-                    color: Theme.subtle; font.family: Theme.mono; font.pixelSize: Theme.uiFontSize
-                }
                 Toggle {
                     on: popup.on
                     onToggled: if (popup.adapter) popup.adapter.enabled = !popup.adapter.enabled
@@ -106,12 +102,12 @@ PopupWindow {
                 Rectangle {
                     id: scanRow
                     Layout.fillWidth: true
-                    implicitHeight: 28
-                    radius: Theme.fieldRadius
-                    color: scanHover.containsMouse ? Theme.highlightLow : "transparent"
+                    implicitHeight: 30
+                    radius: Theme.cardRadius
+                    color: scanHover.containsMouse ? Theme.hover : "transparent"
                     readonly property bool scanning: popup.adapter?.discovering ?? false
                     RowLayout {
-                        anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
+                        anchors { fill: parent; leftMargin: 10; rightMargin: 10 }
                         spacing: 8
                         Icon {
                             id: scanIcon
@@ -136,6 +132,7 @@ PopupWindow {
                         id: scanHover
                         anchors.fill: parent
                         hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
                         onClicked: if (popup.adapter) popup.adapter.discovering = !popup.adapter.discovering
                     }
                 }

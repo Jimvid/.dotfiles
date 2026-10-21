@@ -62,8 +62,8 @@ PopupWindow {
                     readonly property bool selected: Caffeine.active && Caffeine.minutes === modelData.minutes
                     Layout.fillWidth: true
                     implicitHeight: 28
-                    radius: Theme.fieldRadius
-                    color: selected ? Theme.highlightMed : hover.containsMouse ? Theme.highlightLow : "transparent"
+                    radius: Theme.cardRadius
+                    color: selected ? Theme.highlightMed : hover.containsMouse ? Theme.hover : "transparent"
                     RowLayout {
                         anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
                         Text {

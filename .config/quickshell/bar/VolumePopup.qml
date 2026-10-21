@@ -117,8 +117,8 @@ PopupWindow {
                         readonly property bool active: modelData === popup.sink
                         Layout.fillWidth: true
                         implicitHeight: 28
-                        radius: Theme.fieldRadius
-                        color: active ? Theme.highlightMed : devHover.containsMouse ? Theme.highlightLow : "transparent"
+                        radius: Theme.cardRadius
+                        color: active ? Theme.highlightMed : devHover.containsMouse ? Theme.hover : "transparent"
                         RowLayout {
                             anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
                             spacing: 8
@@ -195,8 +195,8 @@ PopupWindow {
                         readonly property bool active: modelData === popup.source
                         Layout.fillWidth: true
                         implicitHeight: 28
-                        radius: Theme.fieldRadius
-                        color: active ? Theme.highlightMed : srcHover.containsMouse ? Theme.highlightLow : "transparent"
+                        radius: Theme.cardRadius
+                        color: active ? Theme.highlightMed : srcHover.containsMouse ? Theme.hover : "transparent"
                         RowLayout {
                             anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
                             spacing: 8

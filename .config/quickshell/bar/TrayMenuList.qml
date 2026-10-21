@@ -40,8 +40,8 @@ ColumnLayout {
                 visible: !row.modelData.isSeparator
                 Layout.fillWidth: true
                 implicitHeight: 28
-                radius: Theme.fieldRadius
-                color: hover.containsMouse && row.modelData.enabled ? Theme.highlightLow : "transparent"
+                radius: Theme.cardRadius
+                color: hover.containsMouse && row.modelData.enabled ? Theme.hover : "transparent"
 
                 RowLayout {
                     anchors { fill: parent; leftMargin: 8 + list.depth * 12; rightMargin: 8 }

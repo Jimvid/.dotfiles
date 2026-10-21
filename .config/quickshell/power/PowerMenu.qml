@@ -99,8 +99,8 @@ Scope {
                                 required property int index
                                 readonly property bool active: root.selected === index
                                 implicitWidth: 92; implicitHeight: 84
-                                radius: Theme.fieldRadius
-                                color: active ? Theme.highlightMed : tileHover.containsMouse ? Theme.highlightLow : "transparent"
+                                radius: Theme.cardRadius
+                                color: active ? Theme.highlightMed : tileHover.containsMouse ? Theme.hover : "transparent"
 
                                 ColumnLayout {
                                     anchors.centerIn: parent

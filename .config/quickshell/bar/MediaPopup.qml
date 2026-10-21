@@ -58,7 +58,7 @@ PopupWindow {
                         implicitWidth: chipLabel.implicitWidth + 16
                         implicitHeight: 22
                         radius: Theme.fieldRadius
-                        color: selected ? Theme.highlightMed : chipHover.containsMouse ? Theme.highlightLow : "transparent"
+                        color: selected ? Theme.highlightMed : chipHover.containsMouse ? Theme.hover : "transparent"
                         Text {
                             id: chipLabel
                             anchors.centerIn: parent

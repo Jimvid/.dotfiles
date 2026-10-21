@@ -48,8 +48,8 @@ PopupWindow {
                     readonly property bool active: PowerProfiles.profile === modelData.value
                     Layout.fillWidth: true
                     implicitHeight: 30
-                    radius: Theme.fieldRadius
-                    color: active ? Theme.highlightMed : hover.containsMouse ? Theme.highlightLow : "transparent"
+                    radius: Theme.cardRadius
+                    color: active ? Theme.highlightMed : hover.containsMouse ? Theme.hover : "transparent"
 
                     RowLayout {
                         anchors { fill: parent; leftMargin: 10; rightMargin: 10 }

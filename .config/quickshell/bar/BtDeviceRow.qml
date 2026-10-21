@@ -3,7 +3,7 @@ import QtQuick
 import QtQuick.Layouts
 import qs
 
-// one bluetooth device in the popup: type icon, name, battery, state; a connected device gets the accent check like the active output in the mixer
+// one bluetooth device in the popup: type icon, name, battery, state; a connected device is named in the accent
 Rectangle {
     id: row
     required property var modelData
@@ -29,19 +29,20 @@ Rectangle {
 
     Layout.fillWidth: true
     implicitHeight: 30
-    radius: Theme.fieldRadius
-    color: device.connected ? Theme.highlightMed : hover.containsMouse ? Theme.highlightLow : "transparent"
+    // hover row, inset from the card edge
+    radius: Theme.cardRadius
+    color: hover.containsMouse ? Theme.hover : "transparent"
 
     RowLayout {
-        anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
+        anchors { fill: parent; leftMargin: 10; rightMargin: 10 }
         spacing: 8
         Icon { name: row.deviceIcon(row.device); size: 14; color: row.device.connected ? Theme.accent : Theme.subtle }
         Text {
             Layout.fillWidth: true
             text: row.device.name
             elide: Text.ElideRight
-            color: row.device.connected ? Theme.text : Theme.subtle
-            font.family: Theme.ui; font.pixelSize: Theme.uiFontSize
+            color: row.device.connected ? Theme.accent : Theme.text
+            font.family: Theme.ui; font.pixelSize: Theme.uiFontSize; font.bold: row.device.connected
         }
         Text {
             visible: row.busy !== ""
@@ -57,12 +58,12 @@ Rectangle {
                 color: Theme.subtle; font.family: Theme.mono; font.pixelSize: Theme.uiFontSize - 1
             }
         }
-        Icon { visible: row.device.connected; name: "check"; size: 14; color: Theme.accent }
     }
     MouseArea {
         id: hover
         anchors.fill: parent
         hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
         onClicked: row.clicked()
     }
 }

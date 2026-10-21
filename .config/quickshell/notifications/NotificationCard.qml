@@ -20,7 +20,7 @@ Rectangle {
     readonly property var buttons: actions.filter(a => a.identifier !== "default")
 
     radius: Theme.cardRadius
-    color: flat ? (hover.containsMouse ? Theme.highlightLow : "transparent") : Theme.surface
+    color: flat ? (hover.containsMouse ? Theme.hover : "transparent") : Theme.surface
     border.width: flat ? 0 : 1
     border.color: urgency === 2 ? Theme.love : Theme.highlightHigh
     implicitHeight: content.implicitHeight + 2 * content.anchors.margins

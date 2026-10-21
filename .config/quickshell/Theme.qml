@@ -21,6 +21,8 @@ QtObject {
 
     readonly property color accent:         gold   // selected / active states
     readonly property color fg:             text   // bar text and icons at rest
+    readonly property color hover:          base     // a row or tile under the pointer, on a surface card
+    readonly property color hoverOnBase:    surface  // the same on the base ground, where hover would vanish
 
     readonly property string ui:   "Geist"
     readonly property string mono: "GeistMono Nerd Font Mono"
