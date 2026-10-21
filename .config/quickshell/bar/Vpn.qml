@@ -11,12 +11,10 @@ Glyph {
     color: on ? Theme.accent : Theme.subtle
     tip: on ? Wireguard.active.map(p => p.name + (p.server ? "  ·  " + p.server : "")).join("\n") : "VPN off"
 
-    // right click: drop every tunnel, or bring up the only one
+    // right click works the header switch
     onClicked: mouse => {
-        if (mouse.button !== Qt.RightButton) { popup.visible = !popup.visible; return; }
-        if (on) Wireguard.active.forEach(p => Wireguard.down(p.name));
-        else if (Wireguard.profiles.length === 1) Wireguard.up(Wireguard.profiles[0].name);
-        else popup.visible = true;
+        if (mouse.button === Qt.RightButton) Wireguard.toggle();
+        else popup.visible = !popup.visible;
     }
     VpnPopup { id: popup; target: root }
 }

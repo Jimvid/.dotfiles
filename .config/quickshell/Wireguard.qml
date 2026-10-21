@@ -16,8 +16,16 @@ Singleton {
     function lookup() { if (!ipProc.running) ipProc.running = true; }
     function up(name) { run(["nmcli", "connection", "up", name]); }
     function down(name) { run(["nmcli", "connection", "down", name]); }
+    // the header switch: off drops every tunnel, on brings back the last one used
+    property string last: ""
+    function toggle() {
+        if (active.length) active.forEach(p => down(p.name));
+        else if (profiles.length) up(profiles.find(p => p.name === last)?.name ?? profiles[0].name);
+    }
+
     // one tunnel at a time: picking a profile drops whatever is up, picking the active one drops it
     function select(name) {
+        last = name;
         const quote = s => "'" + s.replace(/'/g, "'\\''") + "'";
         if (active.some(p => p.name === name)) { down(name); return; }
         run(["sh", "-c", active.map(p => "nmcli connection down " + quote(p.name) + ";").join(" ") + " nmcli connection up " + quote(name)]);
@@ -30,7 +38,7 @@ Singleton {
     }
 
     // the exit address changes with the tunnel
-    onActiveChanged: lookup()
+    onActiveChanged: { if (active.length) last = active[0].name; lookup(); }
 
     Process {
         id: action

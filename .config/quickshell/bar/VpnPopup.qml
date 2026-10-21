@@ -40,9 +40,14 @@ PopupWindow {
             anchors { left: parent.left; right: parent.right; top: parent.top; margins: 16 }
             spacing: 8
 
-            Text {
-                text: "VPN"
-                color: Theme.text; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize; font.bold: true
+            RowLayout {
+                Layout.fillWidth: true
+                Text {
+                    Layout.fillWidth: true
+                    text: "VPN"
+                    color: Theme.text; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize; font.bold: true
+                }
+                Toggle { on: Wireguard.active.length > 0; onToggled: Wireguard.toggle() }
             }
 
             Rectangle { Layout.fillWidth: true; Layout.topMargin: 4; Layout.bottomMargin: 4; implicitHeight: 1; color: Theme.highlightMed }
