@@ -44,11 +44,6 @@ PopupWindow {
                     text: "Caffeine"
                     color: Theme.text; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize; font.bold: true
                 }
-                Text {
-                    visible: Caffeine.active
-                    text: Caffeine.remaining
-                    color: Theme.subtle; font.family: Theme.mono; font.pixelSize: Theme.uiFontSize - 1
-                }
                 Toggle { on: Caffeine.active; onToggled: Caffeine.toggle() }
             }
 
