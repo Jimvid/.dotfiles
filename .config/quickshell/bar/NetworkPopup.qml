@@ -9,6 +9,7 @@ PopupWindow {
     id: popup
     required property Item target
     property var wifi
+    property string ip: ""
     visible: false
     grabFocus: true
 
@@ -22,11 +23,24 @@ PopupWindow {
     implicitHeight: card.implicitHeight
 
     // scan only while open
-    onVisibleChanged: if (wifi) wifi.scannerEnabled = visible
+    onVisibleChanged: {
+        if (wifi) wifi.scannerEnabled = visible;
+        if (visible) Modem.refresh();
+    }
 
-    readonly property var networks: wifi
-        ? wifi.networks.values.slice().sort((a, b) => (b.connected - a.connected) || (b.signalStrength - a.signalStrength))
-        : []
+    // sorted by strength, rebuilt on a tick and only when the order changed, so the Repeater keeps its
+    // rows (each with a shader-tinted icon) while strengths fluctuate
+    property var networks: []
+    readonly property int count: wifi?.networks.values.length ?? 0
+    onCountChanged: rebuild()
+    function rebuild() {
+        const list = (wifi ? wifi.networks.values.slice() : [])
+            .sort((a, b) => (b.connected - a.connected) || (b.signalStrength - a.signalStrength));
+        if (list.length === networks.length && list.every((n, i) => n === networks[i])) return;
+        networks = list;
+    }
+    Timer { running: popup.visible; interval: 2000; repeat: true; triggeredOnStart: true; onTriggered: popup.rebuild() }
+
     property var pskFor: null   // network waiting for a passphrase
     property string error: ""
 
@@ -52,10 +66,14 @@ PopupWindow {
                     text: "Wi-Fi"
                     color: Theme.text; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize; font.bold: true
                 }
-                Toggle { on: Networking.wifiEnabled; onToggled: Networking.wifiEnabled = !Networking.wifiEnabled }
+                Toggle {
+                    on: Networking.wifiEnabled
+                    onToggled: { popup.error = ""; popup.pskFor = null; Networking.wifiEnabled = !Networking.wifiEnabled; }
+                }
             }
 
-            Rectangle { Layout.fillWidth: true; Layout.topMargin: 4; Layout.bottomMargin: 4; implicitHeight: 1; color: Theme.highlightMed }
+            // the list only exists while wifi is on; off, the header goes straight to the mobile section
+            Rectangle { visible: Networking.wifiEnabled; Layout.fillWidth: true; Layout.topMargin: 4; Layout.bottomMargin: 4; implicitHeight: 1; color: Theme.highlightMed }
 
             Repeater {
                 model: popup.networks
@@ -123,9 +141,52 @@ PopupWindow {
                 color: Theme.love; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize
             }
             Text {
-                visible: popup.networks.length === 0
-                text: Networking.wifiEnabled ? "Scanning\u2026" : "Wi-Fi is off"
+                visible: Networking.wifiEnabled && popup.networks.length === 0
+                text: "Scanning\u2026"
                 color: Theme.subtle; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize
+            }
+
+            // mobile data, only with a modem (Modem.qml)
+            Rectangle { visible: Modem.present; Layout.fillWidth: true; Layout.topMargin: 8; Layout.bottomMargin: 4; implicitHeight: 1; color: Theme.highlightMed }
+
+            RowLayout {
+                visible: Modem.present
+                Layout.fillWidth: true
+                Text {
+                    Layout.fillWidth: true
+                    text: "Mobile data"
+                    color: Theme.text; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize; font.bold: true
+                }
+                Toggle { on: Modem.connected; onToggled: Modem.connected ? Modem.disable() : Modem.enable() }
+            }
+
+            Repeater {
+                model: Modem.connected ? [
+                    ["Operator", Modem.operator || "\u2014"],
+                    ["Network", Modem.tech + "  " + Modem.quality + "%"],
+                    ["Address", popup.ip || "\u2014"],
+                ] : []
+                delegate: RowLayout {
+                    required property var modelData
+                    Layout.fillWidth: true
+                    Text {
+                        Layout.fillWidth: true
+                        text: modelData[0]
+                        color: Theme.subtle; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize
+                    }
+                    Text {
+                        text: modelData[1]
+                        color: Theme.text; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize
+                    }
+                }
+            }
+
+            Text {
+                visible: Modem.error !== ""
+                Layout.fillWidth: true
+                text: Modem.error
+                wrapMode: Text.Wrap
+                color: Theme.love; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize
             }
         }
     }

@@ -20,3 +20,4 @@ audio/flac=mpv.desktop
 audio/ogg=mpv.desktop
 inode/directory=yazi.desktop
 text/plain=dev.zed.Zed.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
