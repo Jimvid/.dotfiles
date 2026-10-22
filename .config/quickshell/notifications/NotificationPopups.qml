@@ -6,6 +6,7 @@ import qs
 
 // the stack of cards in the top right corner of the focused screen, just below the bar.
 // the window is a fixed full-height strip that stays mapped, so hyprland never fades it in or out;
+// it runs to the screen edge so a card slides in from off screen and back out the same way.
 // only the cards themselves take input, everything else passes through
 Variants {
     model: Quickshell.screens
@@ -22,17 +23,19 @@ Variants {
         exclusionMode: ExclusionMode.Normal
         exclusiveZone: 0
         anchors { top: true; bottom: true; right: true }
-        margins { top: Theme.popupGap; right: Theme.sideMargin }
-        implicitWidth: 360
+        margins { top: Theme.popupGap }
+        implicitWidth: 360 + Theme.sideMargin
         color: "transparent"
         mask: Region { item: stack }
 
         Column {
             id: stack
-            width: parent.width
+            width: 360
+            anchors { right: parent.right; rightMargin: Theme.sideMargin }
             spacing: Theme.popupGap
+            readonly property int offscreen: width + Theme.sideMargin   // a card's x once it is past the screen edge
 
-            add:  Transition { NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 150 } }
+            add:  Transition { NumberAnimation { property: "x"; from: stack.offscreen; to: 0; duration: 250; easing.type: Easing.OutCubic } }
             move: Transition { NumberAnimation { property: "y"; duration: 150; easing.type: Easing.OutCubic } }
 
             Repeater {
@@ -50,9 +53,9 @@ Variants {
 
                     width: stack.width
                     actions: notif?.actions ?? []
-                    opacity: closing ? 0 : 1
-                    Behavior on opacity { NumberAnimation { duration: 150 } }
-                    Timer { running: card.closing; interval: 160; onTriggered: Notifs.remove(card.nid) }
+                    x: closing ? stack.offscreen : 0
+                    Behavior on x { NumberAnimation { duration: 200; easing.type: Easing.InCubic } }
+                    Timer { running: card.closing; interval: 210; onTriggered: Notifs.remove(card.nid) }
 
                     onCloseClicked: notif?.dismiss()
                     onClicked: {
@@ -64,8 +67,8 @@ Variants {
 
                     // auto-expire, paused while the mouse is over the card; only the window on the focused screen counts down
                     Timer {
-                        interval: card.notif ? Notifs.timeout(card.notif) : 0
-                        running: interval > 0 && win.visible && !card.closing && !card.hovered
+                        interval: Notifs.timeout
+                        running: win.visible && !card.closing && !card.hovered
                         onTriggered: card.notif?.expire()
                     }
                 }

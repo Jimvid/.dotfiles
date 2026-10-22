@@ -12,12 +12,7 @@ Singleton {
     property int unread: 0
     readonly property int maxHistory: 50
 
-    // milliseconds a card stays up; 0 means until dismissed
-    function timeout(n) {
-        if (n.expireTimeout === 0) return 0;
-        if (n.expireTimeout > 0) return n.expireTimeout * 1000;
-        return n.urgency === NotificationUrgency.Critical ? 0 : n.urgency === NotificationUrgency.Low ? 5000 : 8000;
-    }
+    readonly property int timeout: 3000   // milliseconds a card stays up, whatever the app asked for
 
     // an app icon as an Image source: absolute paths pass through, names go through the icon theme
     function iconSource(name) {
