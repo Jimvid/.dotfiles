@@ -8,7 +8,7 @@ set -e
 # the profile whose tunnel interface is $1, if any
 profile_for() {
     nmcli -t -f NAME,TYPE connection show | awk -F: '$2 == "wireguard" { print $1 }' | while read -r id; do
-        [ "$(nmcli -g connection.interface-name connection show "$id")" = "$1" ] && { echo "$id"; break; }
+        if [ "$(nmcli -g connection.interface-name connection show "$id")" = "$1" ]; then echo "$id"; break; fi
     done
 }
 
