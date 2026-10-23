@@ -30,7 +30,7 @@ sudo pacman -S --needed --noconfirm \
     ghostty zsh neovim vim nano \
     `# cli tools` \
     git openssh github-cli lazygit fzf ripgrep fd zoxide jq lsd tree btop wget unzip man-db \
-    go go-task opentofu rustup just docker \
+    go go-task opentofu rustup just docker pnpm \
     `# flutter (fvm installs the sdk, see tools.sh)` \
     clang cmake ninja pkgconf gtk3 glu xz zip chromium \
     `# apps` \

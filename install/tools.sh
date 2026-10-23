@@ -17,3 +17,6 @@ rustup show active-toolchain >/dev/null 2>&1 || rustup default stable
 
 # -> ~/fvm/bin; `fvm global` creates ~/fvm/default, which .zshrc puts on PATH
 [ -x ~/fvm/bin/fvm ] || curl -fsSL https://fvm.app/install.sh | bash
+
+# arch ships Task as go-task; scripts and Taskfiles call it `task`
+ln -sfn /usr/bin/go-task ~/.local/bin/task
