@@ -25,7 +25,19 @@ Rectangle {
     readonly property string busy: device.pairing ? "Pairing…"
                                  : device.state === BluetoothDeviceState.Connecting ? "Connecting…"
                                  : device.state === BluetoothDeviceState.Disconnecting ? "Disconnecting…"
+                                 : failed ? "Pairing failed"
                                  : ""
+
+    // bluez signals a refused pairing only by dropping it
+    property bool failed: false
+    Timer { id: failedTimer; interval: 4000; onTriggered: row.failed = false }
+    Connections {
+        target: row.device
+        function onPairingChanged() {
+            row.failed = !row.device.pairing && !row.device.paired;
+            if (row.failed) failedTimer.restart();
+        }
+    }
 
     Layout.fillWidth: true
 
@@ -51,7 +63,7 @@ Rectangle {
         Text {
             visible: row.busy !== ""
             text: row.busy
-            color: Theme.subtle; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize - 1
+            color: row.failed ? Theme.love : Theme.subtle; font.family: Theme.ui; font.pixelSize: Theme.uiFontSize - 1
         }
         RowLayout {
             visible: row.device.batteryAvailable && row.busy === ""

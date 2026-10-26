@@ -11,6 +11,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("qs")
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd("hyprsunset")   -- blue light filter daemon; the quickshell night light toggle talks to it over hyprctl
+    hl.exec_cmd("bt-agent -c NoInputNoOutput")   -- pairing agent; without one bluez refuses passkey confirmations and the quickshell popup cannot pair
     hl.exec_cmd("hypridle")
     hl.exec_cmd("kanshi")
     hl.exec_cmd("wl-paste --type text --watch cliphist store")    -- clipboard history, super+c to pick

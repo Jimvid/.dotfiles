@@ -30,6 +30,16 @@ PopupWindow {
     // scanning stops with the popup; a closed popup should not keep the radio busy
     onVisibleChanged: if (!visible && adapter?.discovering) adapter.discovering = false
 
+    // trust what pairs here, so it reconnects on its own
+    Instantiator {
+        model: popup.adapter?.devices ?? null
+        delegate: Connections {
+            required property BluetoothDevice modelData
+            target: modelData
+            function onPairedChanged() { if (modelData.paired && !modelData.trusted) modelData.trusted = true; }
+        }
+    }
+
     Rectangle {
         id: card
         width: parent.width
