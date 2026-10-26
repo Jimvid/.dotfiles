@@ -62,7 +62,7 @@
   },
   "base_keymap": "Cursor",
   "icon_theme": {
-    "mode": "light",
+    "mode": "system",
     "light": "Zed (Default)",
     "dark": "Zed (Default)",
   },
@@ -86,8 +86,8 @@
   "ui_font_size": 17.0,
   "buffer_font_size": 16.0,
   "theme": {
-    "mode": "dark",
-    "light": "One Light",
-    "dark": "Rosé Pine"
+    "mode": "system",
+    "light": "Gruvbox Light",
+    "dark": "Gruvbox Dark"
   },
 }
